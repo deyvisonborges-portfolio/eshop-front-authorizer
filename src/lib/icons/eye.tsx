@@ -1,20 +1,5 @@
 import { IconProps } from "./types";
-
-const renderIconSize = (size: IconProps["size"] = "regular") => {
-  switch (size) {
-    case "mini":
-      return 12;
-    case "small":
-    case "medium":
-      return 16;
-    case "regular":
-      return 20;
-    case "large":
-      return 24;
-    default:
-      return 20;
-  }
-};
+import { renderIconSize } from "./utils/render-icon-size";
 
 export function EyeIcon({ size, color = "black" }: IconProps) {
   // if (!color) {

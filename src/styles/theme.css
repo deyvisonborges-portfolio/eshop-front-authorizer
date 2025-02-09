@@ -1,0 +1,10 @@
+[data-theme="light"] {
+  --color-primary: #000;
+  --color-secondary: #333;
+  --color-deyvin: red;
+}
+
+[data-theme="dark"] {
+  --color-primary: #fff;
+  --color-secondary: #ddd;
+}

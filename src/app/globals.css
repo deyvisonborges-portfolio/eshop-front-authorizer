@@ -1,9 +1,9 @@
-:root {
-  --font-size-mini: 12px;
-  --font-size-small: 14px;
-  --font-size-medium: 16px;
-  
-}
+/* @import "../styles/theme.css"; */
+
+/* @config "../../tailwind.config.ts"; */
+
+@import "tailwindcss";
+@source "../../node_modules/dist/shared.css";
 
 * {
   box-sizing: border-box;

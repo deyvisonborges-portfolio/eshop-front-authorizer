@@ -1,3 +1,3 @@
 export default function TestPage() {
-  return <div>Test Page</div>;
+  return <div className="test">Test Page</div>;
 }
