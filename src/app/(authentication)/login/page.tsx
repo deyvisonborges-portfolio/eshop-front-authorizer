@@ -1,4 +1,4 @@
-import { Text } from "@/@lib-ui";
+import { Heading, Text } from "@/@lib-ui";
 import styles from "./page.module.css";
 
 export default function LoginPage() {
@@ -181,6 +181,34 @@ export default function LoginPage() {
           Mini, peso bold
         </Text>
       </div>
+
+      <br />
+      <br />
+      <h3>Heading</h3>
+      <Heading as="h1" size="xxlarge">
+        Titulo 1
+      </Heading>
+      <Heading as="h1" size="xxlarge" formatting="link" weight="medium">
+        Titulo 1
+      </Heading>
+      <Heading as="h1" size="xxlarge" formatting="uppercase" weight="bold">
+        Titulo 1
+      </Heading>
+      <Heading as="h2" size="xlarge">
+        Titulo 2
+      </Heading>
+      <Heading as="h3" size="large">
+        Titulo 3
+      </Heading>
+      <Heading as="h4" size="medium">
+        Titulo 4
+      </Heading>
+      <Heading as="h5" size="small">
+        Titulo 5
+      </Heading>
+      <Heading as="h6" size="xsmall">
+        Titulo 6
+      </Heading>
     </div>
   );
 }

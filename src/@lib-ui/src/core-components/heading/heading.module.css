@@ -1,0 +1,45 @@
+/* Sizes */
+.size-xxlarge {
+  font-size: var(--font-size-96);
+}
+.size-xlarge {
+  font-size: var(--font-size-72);
+}
+.size-large {
+  font-size: var(--font-size-64);
+}
+.size-medium {
+  font-size: var(--font-size-40);
+}
+.size-small {
+  font-size: var(--font-size-32);
+}
+.size-xsmall {
+  font-size: var(--font-size-24);
+}
+
+/* Formattings */
+.formatting-link {
+  text-decoration: underline;
+}
+
+.formatting-uppercase {
+  text-transform: uppercase;
+}
+
+.formatting-normal {
+  font-style: normal;
+}
+
+/* Weights */
+.weight-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weight-bold {
+  font-weight: var(--font-weight-bold);
+}

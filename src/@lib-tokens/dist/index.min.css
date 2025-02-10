@@ -7,10 +7,11 @@
   margin: 0;
 }
 
-html,
+/* ISSUE: revisar isso aqui */
+/* html,
 body {
   height: 100%;
-}
+} */
 
 body {
   min-height: 100vh;
