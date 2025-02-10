@@ -1,2 +1,3 @@
-export * from "./form";
 export * from "./button";
+export * from "./form";
+export * from "./text";

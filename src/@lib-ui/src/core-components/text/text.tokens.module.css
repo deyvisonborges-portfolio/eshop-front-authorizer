@@ -1,0 +1,19 @@
+@import "./text.module.css";
+
+.body-large-regular {
+  composes: size-large from "./text.module.css";
+  composes: weight-regular from "./text.module.css";
+  line-height: 24px;
+}
+
+.body-large-medium {
+  composes: size-large from "./text.module.css";
+  composes: weight-medium from "./text.module.css";
+  line-height: 24px;
+}
+
+.body-large-bold {
+  composes: size-large from "./text.module.css";
+  composes: weight-bold from "./text.module.css";
+  line-height: 24px;
+}

@@ -38,6 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         `}
         {...props}
       >
+        <p className={styles["body-large-regular"]}>Body Large Regular</p>
         {icon && <span>{icon}</span>}
         {children}
       </button>

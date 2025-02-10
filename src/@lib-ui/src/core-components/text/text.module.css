@@ -1,0 +1,44 @@
+/* @import "./text.tokens.module.css"; */
+
+/* Sizes */
+.size-large {
+  font-size: var(--font-size-18);
+}
+.size-regular {
+  font-size: var(--font-size-16);
+}
+.size-medium {
+  font-size: var(--font-size-14);
+}
+.size-small {
+  font-size: var(--font-size-12);
+}
+.size-mini {
+  font-size: var(--font-size-10);
+}
+
+/* Styles */
+.style-link {
+  text-decoration: underline;
+}
+
+.style-uppercase {
+  text-transform: uppercase;
+}
+
+.style-normal {
+  font-style: normal;
+}
+
+/* Weights */
+.weight-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weight-bold {
+  font-weight: var(--font-weight-bold);
+}

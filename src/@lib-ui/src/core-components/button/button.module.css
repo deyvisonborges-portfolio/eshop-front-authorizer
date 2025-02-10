@@ -97,3 +97,9 @@ Botões com ícone
     height: 16px;
   }
 */
+
+.body-large-regular {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-normal);
+  line-height: calc(var(--font-size-24) * 1.6);
+}
