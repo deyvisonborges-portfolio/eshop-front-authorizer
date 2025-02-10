@@ -1,0 +1,74 @@
+/* @import "./tokens.css";
+
+Nesse contexto, o :root serve como fallback para cores não 
+definidas em alguns tokens 
+:root {
+  --color-neutral-white: #ffffff;
+}
+
+[data-theme="light"] {
+  --border-color-lighter: var(--color-neutral-grey-20);
+  --border-color-light: var(--color-neutral-grey-30);
+  --border-color: var(--color-neutral-grey-50);
+  --border-color-dark: var(--color-neutral-grey-50);
+  --border-color-darker: var(--color-neutral-grey-60);
+
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-orange: var(--color-brand-orange);
+  --color-brand-purple: var(--color-brand-purple);
+  --color-dark-black: var(--color-dark-black);
+  --color-neutral-white: var(--color-neutral-white);
+  --color-neutral-grey-10: var(--color-neutral-grey-10);
+  --color-neutral-grey-20: var(--color-neutral-grey-20);
+  --color-neutral-grey-30: var(--color-neutral-grey-30);
+  --color-neutral-grey-40: var(--color-neutral-grey-40);
+  --color-neutral-grey-50: var(--color-neutral-grey-50);
+  --color-neutral-grey-60: var(--color-neutral-grey-60);
+  --color-semantic-informative-blue-10: var(
+    --color-semantic-informative-blue-10
+  );
+  --color-semantic-informative-blue-50: var(
+    --color-semantic-informative-blue-50
+  );
+  --color-semantic-warning-yellow-10: var(--color-semantic-warning-yellow-10);
+  --color-semantic-warning-yellow-50: var(--color-semantic-warning-yellow-50);
+  --color-semantic-danger-red-10: var(--color-semantic-danger-red-10);
+  --color-semantic-danger-red-50: var(--color-semantic-danger-red-50);
+  --color-semantic-success-green-10: var(--color-semantic-success-green-10);
+  --color-semantic-success-green-50: var(--color-semantic-success-green-50);
+}
+
+[data-theme="dark"] {
+  --border-color-lighter: var(--color-neutral-grey-20);
+  --border-color-light: var(--color-neutral-grey-30);
+  --border-color: var(--color-neutral-grey-50);
+  --border-color-dark: var(--color-neutral-grey-50);
+  --border-color-darker: var(--color-neutral-grey-60);
+
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-orange: var(--color-brand-orange);
+  --color-brand-purple: var(--color-brand-purple);
+  --color-dark-black: var(--color-dark-black);
+  --color-neutral-white: var(--color-neutral-white);
+  --color-neutral-grey-10: var(--color-neutral-grey-10);
+  --color-neutral-grey-20: var(--color-neutral-grey-20);
+  --color-neutral-grey-30: var(--color-neutral-grey-30);
+  --color-neutral-grey-40: var(--color-neutral-grey-40);
+  --color-neutral-grey-50: var(--color-neutral-grey-50);
+  --color-neutral-grey-60: var(--color-neutral-grey-60);
+  --color-semantic-informative-blue-10: var(
+    --color-semantic-informative-blue-10
+  );
+  --color-semantic-informative-blue-50: var(
+    --color-semantic-informative-blue-50
+  );
+  --color-semantic-warning-yellow-10: var(--color-semantic-warning-yellow-10);
+  --color-semantic-warning-yellow-50: var(--color-semantic-warning-yellow-50);
+  --color-semantic-danger-red-10: var(--color-semantic-danger-red-10);
+  --color-semantic-danger-red-50: var(--color-semantic-danger-red-50);
+  --color-semantic-success-green-10: var(--color-semantic-success-green-10);
+  --color-semantic-success-green-50: var(--color-semantic-success-green-50);
+}
+*/

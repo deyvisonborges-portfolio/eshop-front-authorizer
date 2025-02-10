@@ -1,0 +1,17 @@
+/* @import "./theme.css"; */
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}

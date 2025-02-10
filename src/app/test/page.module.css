@@ -1,0 +1,7 @@
+.test {
+  color: var(--color-neutral-grey-10);
+}
+
+.otherTest {
+  border: 1px solid green;
+}

@@ -2,8 +2,43 @@
 
 /* @config "../../tailwind.config.ts"; */
 
-@import "tailwindcss";
-@source "../../node_modules/dist/shared.css";
+/* @import "tailwindcss"; */
+
+/* @variant dark (&:where([data-theme="dark"], [data-theme="dark"] *)); */
+
+/* @layer base {
+  html {
+    --color-primary: #4285f4;
+    --color-secondary: #34a853;
+    --color-deyvin: red;
+  }
+
+  [data-theme="light"] {
+    --color-primary: #000;
+    --color-secondary: #333;
+  }
+
+  [data-theme="dark"] {
+    --color-primary: #fff;
+    --color-secondary: #ddd;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+*/
+
+@import "../@lib-tokens/dist/index.min.css";
 
 * {
   box-sizing: border-box;
