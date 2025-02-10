@@ -6,6 +6,10 @@ export default function LoginPage() {
     <div className={styles.container}>
       <h1>Spinner</h1>
       <Spinner />
+      <Spinner color="blue" />
+      <Spinner color="green" />
+      <Spinner color="red" />
+
       <br />
       <br />
       <h1>Login Page</h1>

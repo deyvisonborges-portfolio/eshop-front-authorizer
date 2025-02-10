@@ -1,5 +1,18 @@
+/* Define a cor dinamicamente baseada no atributo */
+.loader[data-color="red"] {
+  --loader-color: red;
+}
+
+.loader[data-color="blue"] {
+  --loader-color: blue;
+}
+
+.loader[data-color="green"] {
+  --loader-color: green;
+}
+
 .loader {
-  border: 2px solid #fff;
+  border: 2px solid var(--loader-color, #fff);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
