@@ -1,35 +1,48 @@
-import React from "react";
-import styles from "./tokens.module.css";
+import React, { ComponentPropsWithRef, forwardRef } from "react";
+import styles from "./button.module.css";
 
 type ButtonSize = "mini" | "small" | "medium" | "regular" | "large";
 type ButtonVariant = "squared" | "rounded" | "pill";
-type ButtonColor = "primary" | "";
+type ButtonColor = "primary" | "secondary";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = {
+  color?: ButtonColor;
   size?: ButtonSize;
   variant?: ButtonVariant;
   icon?: React.ReactNode;
-}
+} & ComponentPropsWithRef<"button">;
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  size = "regular",
-  variant = "squared",
-  icon,
-  ...props
-}) => {
-  return (
-    <button
-      // corrigir essa parte, pois esta retornando undefined devido a falta do suporte ao prefixo button--
-      className={`${styles.button} ${styles[size]} ${styles[variant]} ${
-        icon ? styles.withIcon : ""
-      }`}
-      {...props}
-    >
-      {icon && <span>{icon}</span>}
-      {children}
-    </button>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      color = "primary",
+      size = "regular",
+      variant = "squared",
+      icon,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        name="button"
+        type="button"
+        className={`
+          ${styles.button} 
+          ${styles[`button--${color}`]}
+          ${styles[`button--${size}`]} 
+          ${styles[`button--${variant}`]} 
+          ${icon ? styles.withIcon : ""}
+        `}
+        {...props}
+      >
+        {icon && <span>{icon}</span>}
+        {children}
+      </button>
+    );
+  }
+);
 
-export default Button;
+Button.displayName = "Button";

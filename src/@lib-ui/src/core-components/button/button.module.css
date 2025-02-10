@@ -16,12 +16,20 @@
   font-weight: 500;
   transition: background-color 0.2s;
   /* transition: 0.2s ease-in-out; */
-  background-color: var(--color-secondary-dark);
-  color: var(--color-primary);
 }
 
 .button:hover {
   background-color: var(--color-primary-hover);
+}
+
+/* Colors */
+.button--primary {
+  background-color: var(--color-secondary-dark);
+  color: var(--color-primary);
+}
+.button--secondary {
+  background-color: var(--color-primary);
+  color: var(--color-secondary-dark);
 }
 
 /* Variants */

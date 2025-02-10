@@ -1,4 +1,4 @@
-import Button from "@/@lib-ui/src/core-components/button";
+import { Button } from "@/@lib-ui";
 import { EyeIcon } from "@/lib/icons/eye";
 // import { Button } from "@/components/button";
 import { ThemeProvider } from "@/styles/theme.provider";
@@ -14,7 +14,7 @@ export default function Home() {
       <EyeIcon size="regular" />
       <EyeIcon size="small" />
 
-      <div style={{ backgroundColor: "#222", padding: "20px", color: "white" }}>
+      <div style={{ padding: "20px", color: "white" }}>
         <h2>Button Squared (Default)</h2>
         <Button size="mini">Mini Button</Button>
         <Button size="small">Small Button</Button>
@@ -55,6 +55,10 @@ export default function Home() {
         <Button size="large" variant="pill">
           Large Button
         </Button>
+
+        <h2>Button Colors (WIP)</h2>
+        <Button color="primary">Primary Color</Button>
+        <Button color="secondary">Secondary Color</Button>
 
         {/* <h2>With Icon</h2>
         <Button size="mini" icon={<Eye />}>
