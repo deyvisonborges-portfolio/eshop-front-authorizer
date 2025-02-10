@@ -1,9 +1,13 @@
-import { Heading, Text } from "@/@lib-ui";
+import { Heading, Spinner, Text } from "@/@lib-ui";
 import styles from "./page.module.css";
 
 export default function LoginPage() {
   return (
     <div className={styles.container}>
+      <h1>Spinner</h1>
+      <Spinner />
+      <br />
+      <br />
       <h1>Login Page</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h2>Normal</h2>
