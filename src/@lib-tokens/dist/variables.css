@@ -62,7 +62,7 @@
 
   /* Color
    ================================================================= */
-  --color-brand-primary: ;
+  --color-brand-primary: #0000fe;
   --color-primary-lighter: #484848;
   --color-primary-light: #303030;
   --color-primary: #222222;
@@ -100,6 +100,14 @@
   --border-radius-regular: 12px;
   --border-radius-large: 16px;
 
+  --border-radius-4: 4px;
+  --border-radius-8: 8px;
+  --border-radius-12: 12px;
+  --border-radius-14: 14px;
+  --border-radius-18: 18px;
+  --border-radius-24: 24px;
+  --border-radius-32: 32px;
+
   /* Transition
    ================================================================= */
   --transition-faster: 0.1s;
@@ -136,5 +144,10 @@
   --padding-y-48: 48px;
   --padding-y-64: 64px;
 
+  --padding-xy-8-4: 4px 8px;
+  --padding-xy-12-4: 4px 12px;
+  --padding-xy-14-8: 8px 14px;
+  --padding-xy-16-8: 8px 16px;
+  --padding-xy-18-12: 12px 18px;
   /* --padding-xy-32: 32px; */
 }

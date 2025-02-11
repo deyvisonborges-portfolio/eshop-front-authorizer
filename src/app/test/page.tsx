@@ -1,11 +1,39 @@
-import { Form } from "@/@lib-ui";
+import { Button, ButtonSize, ButtonVariant, Form } from "@/@lib-ui";
 import styles from "./page.module.css";
+
+import buttons from "./buttons.json";
 
 export default function TestPage() {
   return (
     <Form utilities={[styles.test, styles.otherTest]}>
-      {/* <Form utilities={Object.values(styles)}> */}
-      <div className="deyvin">Test Page</div>
+      {buttons.button_groups.map((button) => {
+        return (
+          <div>
+            <h1>{button.variant}</h1>
+            <div
+              style={{
+                alignItems: "center",
+                display: "flex",
+                columnGap: "40px",
+                flexWrap: "wrap",
+              }}
+            >
+              {button.buttons.map((b) => (
+                <Button
+                  variant={button.variant as ButtonVariant}
+                  color="primary"
+                  size={b.size as ButtonSize}
+                >
+                  {b.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+      <Button variant="pill" size="large">
+        Teste
+      </Button>
     </Form>
   );
 }

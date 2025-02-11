@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithRef, forwardRef } from "react";
 import styles from "./button.module.css";
 
-type ButtonSize = "mini" | "small" | "medium" | "regular" | "large";
-type ButtonVariant = "squared" | "rounded" | "pill";
-type ButtonColor = "primary" | "secondary";
+export type ButtonSize = "mini" | "small" | "medium" | "regular" | "large";
+export type ButtonVariant = "squared" | "rounded" | "pill";
+export type ButtonColor = "primary" | "secondary";
 
 type ButtonProps = {
   color?: ButtonColor;
@@ -38,9 +38,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         `}
         {...props}
       >
-        <p className={styles["body-large-regular"]}>Body Large Regular</p>
         {icon && <span>{icon}</span>}
-        {children}
+        Mini {children}
       </button>
     );
   }

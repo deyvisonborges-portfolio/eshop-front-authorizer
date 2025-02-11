@@ -1,79 +1,96 @@
-/*
-  --border-radius-mini: 2px;
-  --border-radius-small: 4px;
-  --border-radius-medium: 8px;
-  --border-radius-regular: 12px;
-  --border-radius-large: 16px; 
-*/
-
 /* Base Button */
 .button {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
   border: none;
   cursor: pointer;
-  font-weight: 500;
+  display: inline-flex;
+  font-weight: var(--font-weight-regular);
+  justify-content: center;
   transition: background-color 0.2s;
   /* transition: 0.2s ease-in-out; */
 }
 
-.button:hover {
-  background-color: var(--color-primary-hover);
-}
-
 /* Colors */
 .button--primary {
-  background-color: var(--color-secondary-dark);
-  color: var(--color-primary);
+  background-color: var(--color-brand-primary);
+  color: var(--color-gray-1);
 }
 .button--secondary {
   background-color: var(--color-primary);
   color: var(--color-secondary-dark);
 }
 
-/* Variants */
-.button--squared {
-  border-radius: 0;
-}
-
-.button--rounded {
-  border-radius: var(--border-radius-medium);
-}
-
-.button--pill {
-  border-radius: var(--border-radius-pill);
-}
-
 /* Sizes */
 .button--mini {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: var(--font-size-mini);
+  font-size: var(--font-size-12);
   height: 24px;
+  line-height: var(--font-size-16);
+  padding: var(--padding-xy-8-4);
 }
 
 .button--small {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: var(--font-size-small);
-  height: 32px;
+  font-size: var(--font-size-14);
+  height: 28px;
+  line-height: var(--font-size-20);
+  padding: var(--padding-xy-12-4);
 }
 
 .button--medium {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-medium);
-  height: 40px;
+  font-size: var(--font-size-14);
+  height: 36px;
+  line-height: var(--font-size-20);
+  padding: var(--padding-xy-14-8);
 }
 
 .button--regular {
-  padding: var(--spacing-sm) var(--spacing-xl);
-  font-size: var(--font-size-regular);
-  height: 48px;
+  font-size: var(--font-size-16);
+  height: 40px;
+  line-height: var(--font-size-24);
+  padding: var(--padding-xy-16-8);
 }
 
 .button--large {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-large);
-  height: 56px;
+  font-size: var(--font-size-18);
+  height: 52px;
+  line-height: 28px;
+  padding: var(--padding-xy-18-12);
+}
+
+/* Variants */
+.button--squared {
+  border-radius: none;
+}
+
+.button--rounded.button--mini {
+  border-radius: var(--border-radius-4);
+}
+.button--rounded.button--small {
+  border-radius: var(--border-radius-4);
+}
+.button--rounded.button--medium {
+  border-radius: var(--border-radius-8);
+}
+.button--rounded.button--regular {
+  border-radius: var(--border-radius-8);
+}
+.button--rounded.button--large {
+  border-radius: var(--border-radius-8);
+}
+
+.button--pill.button--mini {
+  border-radius: var(--border-radius-12);
+}
+.button--pill.button--small {
+  border-radius: var(--border-radius-14);
+}
+.button--pill.button--medium {
+  border-radius: var(--border-radius-18);
+}
+.button--pill.button--regular {
+  border-radius: var(--border-radius-24);
+}
+.button--pill.button--large {
+  border-radius: var(--border-radius-32);
 }
 
 /* Icon */
@@ -85,6 +102,7 @@
   display: inline-flex;
   align-items: center;
 }
+
 /* 
 Botões com ícone
   .withIcon {
@@ -97,9 +115,3 @@ Botões com ícone
     height: 16px;
   }
 */
-
-.body-large-regular {
-  font-size: var(--font-size-16);
-  font-weight: var(--font-weight-normal);
-  line-height: calc(var(--font-size-24) * 1.6);
-}

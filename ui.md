@@ -4,6 +4,7 @@ https://flowbite.com/docs/customize/theming/
 https://zippystarter.com/docs/seo/meta-tags
 https://dev.to/ultroneoustech/creating-multiple-themes-in-tailwind-css-and-nextjs-2e98
 https://www.thingsaboutweb.dev/en/posts/dark-mode-with-tailwind-v4-nextjs
+https://simonswiss.com/articles/tailwind-v4-multi-theme/
 
 - criar multitema
 - setar external css pro tailwind fazer o mapeamento

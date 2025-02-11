@@ -1,0 +1,34 @@
+{
+  "button_groups": [
+    {
+      "variant": "squared",
+      "buttons": [
+        { "size": "mini", "label": "Squared Mini" },
+        { "size": "small", "label": "Squared Small" },
+        { "size": "medium", "label": "Squared Medium" },
+        { "size": "regular", "label": "Squared Regular" },
+        { "size": "large", "label": "Squared Large" }
+      ]
+    },
+    {
+      "variant": "rounded",
+      "buttons": [
+        { "size": "mini", "label": "Rounded Mini" },
+        { "size": "small", "label": "Rounded Small" },
+        { "size": "medium", "label": "Rounded Medium" },
+        { "size": "regular", "label": "Rounded Regular" },
+        { "size": "large", "label": "Rounded Large" }
+      ]
+    },
+    {
+      "variant": "pill",
+      "buttons": [
+        { "size": "mini", "label": "Pill Mini" },
+        { "size": "small", "label": "Pill Small" },
+        { "size": "medium", "label": "Pill Medium" },
+        { "size": "regular", "label": "Pill Regular" },
+        { "size": "large", "label": "Pill Large" }
+      ]
+    }
+  ]
+}
