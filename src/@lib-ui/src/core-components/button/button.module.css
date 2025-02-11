@@ -9,10 +9,14 @@
   transition: background-color 0.2s;
 }
 
-.button:focus {
+.button:hover {
+  filter: brightness(0.8);
+}
+
+.button:focus-visible {
   box-shadow: 0 0 0 1px var(--color-brand-primary);
-  outline: 1px dotted transparent;
-  outline-offset: 1px;
+  outline: solid 1px var(--color-brand-primary);
+  outline-offset: 2px;
 }
 
 /* Colors */
