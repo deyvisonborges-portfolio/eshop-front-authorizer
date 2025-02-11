@@ -1,4 +1,10 @@
-import { Button, ButtonSize, ButtonVariant, Form } from "@/@lib-ui";
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  Form,
+} from "@/@lib-ui";
 import styles from "./page.module.css";
 
 import buttons from "./buttons.json";
@@ -9,7 +15,9 @@ export default function TestPage() {
       {buttons.button_groups.map((button) => {
         return (
           <div>
-            <h1>{button.variant}</h1>
+            <h1 style={{ color: "var(--color-brand-primary)" }}>
+              {button.variant}
+            </h1>
             <div
               style={{
                 alignItems: "center",
@@ -20,8 +28,9 @@ export default function TestPage() {
             >
               {button.buttons.map((b) => (
                 <Button
+                  key={b.label}
                   variant={button.variant as ButtonVariant}
-                  color="primary"
+                  color={b.color as ButtonColor}
                   size={b.size as ButtonSize}
                 >
                   {b.label}

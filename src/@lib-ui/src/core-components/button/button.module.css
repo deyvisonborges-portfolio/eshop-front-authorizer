@@ -7,7 +7,12 @@
   font-weight: var(--font-weight-regular);
   justify-content: center;
   transition: background-color 0.2s;
-  /* transition: 0.2s ease-in-out; */
+}
+
+.button:focus {
+  box-shadow: 0 0 0 1px var(--color-brand-primary);
+  outline: 1px dotted transparent;
+  outline-offset: 1px;
 }
 
 /* Colors */
@@ -15,9 +20,11 @@
   background-color: var(--color-brand-primary);
   color: var(--color-gray-1);
 }
+
 .button--secondary {
-  background-color: var(--color-primary);
-  color: var(--color-secondary-dark);
+  background: transparent;
+  border: 1px solid var(--color-brand-primary);
+  color: var(--color-brand-primary);
 }
 
 /* Sizes */
@@ -58,7 +65,7 @@
 
 /* Variants */
 .button--squared {
-  border-radius: none;
+  border-radius: unset;
 }
 
 .button--rounded.button--mini {

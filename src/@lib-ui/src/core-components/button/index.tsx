@@ -20,6 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "regular",
       variant = "squared",
       icon,
+      className,
       ...props
     },
     ref
@@ -35,11 +36,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ${styles[`button--${size}`]} 
           ${styles[`button--${variant}`]} 
           ${icon ? styles.withIcon : ""}
-        `}
+          ${className || ""}
+        `.trim()}
         {...props}
       >
         {icon && <span>{icon}</span>}
-        Mini {children}
+        {children}
       </button>
     );
   }
