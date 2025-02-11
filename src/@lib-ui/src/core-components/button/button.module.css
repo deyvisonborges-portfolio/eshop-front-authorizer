@@ -10,12 +10,12 @@
 }
 
 .button:hover {
-  filter: brightness(0.8);
+  box-shadow: 0 0 0 2px var(--color-brand-primary-brightness);
 }
 
 .button:focus-visible {
-  box-shadow: 0 0 0 1px var(--color-brand-primary);
-  outline: solid 1px var(--color-brand-primary);
+  box-shadow: 0 0 0 1px var(--color-brand-primary-brightness);
+  outline: solid 1px var(--color-brand-primary-brightness);
   outline-offset: 2px;
 }
 

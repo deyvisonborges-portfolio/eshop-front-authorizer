@@ -63,6 +63,10 @@
   /* Color
    ================================================================= */
   --color-brand-primary: #0000fe;
+  --color-brand-primary-brightness: #8080ff8b;
+  --color-semantic-danger: #ff6872;
+  --color-semantic-danger-brightness: #ffe9e0;
+
   --color-primary-lighter: #484848;
   --color-primary-light: #303030;
   --color-primary: #222222;
