@@ -7,7 +7,7 @@
   /* Typography
   ================================================================= */
   /* Fonts */
-  --font-family-primary: sans-serif;
+  --font-family-primary: "Inter", sans-serif;
   --font-family-secondary: serif;
   --font-base-unit: var(--base-unit);
 
@@ -66,6 +66,12 @@
   --color-brand-primary-brightness: #8080ff8b;
   --color-semantic-danger: #ff6872;
   --color-semantic-danger-brightness: #ffe9e0;
+  --color-semantic-success: #8ac916;
+  --color-semantic-success-brightness: #f2fccf;
+  --color-semantic-informative-blue: #1185f9;
+  --color-semantic-informative-blue-brightness: #cff0fe;
+  --color-semantic-warning-yellow: #fcbf07;
+  --color-semantic-warning-yellow-brightness: #fef7cd;
 
   --color-primary-lighter: #484848;
   --color-primary-light: #303030;

@@ -13,6 +13,11 @@
   box-shadow: 0 0 0 2px var(--color-brand-primary-brightness);
 }
 
+:global([data-theme="dark"]) .button:hover {
+  /* ISSUE - testando atribuicao de custom color diretamente - remover depois */
+  box-shadow: 0 0 0 2px red;
+}
+
 .button:focus-visible {
   box-shadow: 0 0 0 1px var(--color-brand-primary-brightness);
   outline: solid 1px var(--color-brand-primary-brightness);

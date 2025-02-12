@@ -1,4 +1,5 @@
-import { Button, Input } from "@/@lib-ui";
+"use client";
+import { Button, Form, Input } from "@/@lib-ui";
 import { EyeIcon } from "@/lib/icons/eye";
 // import { Button } from "@/components/button";
 import { ThemeProvider } from "@/styles/theme.provider";
@@ -77,12 +78,32 @@ import { ThemeProvider } from "@/styles/theme.provider";
 export default function Home() {
   return (
     <ThemeProvider>
-      <Input
-        name="email"
-        label="E-mail"
-        type="email"
-        customMessage="Deu um erro"
-      />
+      <Form onSubmit={() => console.log("fe")}>
+        <Input
+          name="tedt"
+          label="E-mail"
+          type="email"
+          customMessage="Deu um erro"
+          required
+        />
+        <Input
+          zsize="small"
+          name="test2"
+          label="E-mail"
+          type="email"
+          customMessage="Deu um erro"
+          required
+        />
+        <Input
+          zsize="small"
+          name="tes4"
+          label="E-mail"
+          type="text"
+          customMessage="Mensagem de erro bem grondona"
+          has={{ error: true }}
+        />
+      </Form>
+      <button type="submit">Clicar</button>
     </ThemeProvider>
   );
 }

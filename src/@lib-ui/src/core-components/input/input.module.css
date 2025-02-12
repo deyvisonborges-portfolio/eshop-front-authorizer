@@ -1,0 +1,149 @@
+/* Input Wrapper
+============================================= */
+.input-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  row-gap: 8px;
+  position: relative;
+  width: fit-content;
+}
+
+/* Input Container
+============================================= */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: fit-content;
+}
+
+/* Label */
+.label {
+  color: var(--color-gray-6);
+}
+
+.label-size-small {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+}
+
+.label-size-regular {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+}
+
+.input {
+  border: 1px solid var(--color-gray-3);
+  color: var(--color-gray-9);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-regular);
+  outline: none;
+  position: relative;
+  width: fit-content;
+}
+
+.input:disabled {
+  background-color: var(--color-gray-4);
+  cursor: not-allowed;
+  filter: brightness(0.95);
+  opacity: 0.7;
+  user-select: none;
+}
+
+.input:hover:not(:focus-visible) {
+  background: var(--color-gray-2);
+  border: 1px solid var(--color-gray-4);
+}
+
+.input:focus-visible {
+  border: 1px solid var(--color-gray-9);
+  /* outline: 1px solid var(--color-gray-2);
+  outline-offset: 1px; */
+}
+
+.input:required:focus:invalid {
+  border: 1px solid var(--color-semantic-danger);
+  /* box-shadow: 0 0 2px 2px var(--color-semantic-danger-brightness);
+  outline-offset: 2px; */
+}
+
+.input:required:focus:valid {
+  border: 1px solid var(--color-semantic-success);
+}
+
+.input::placeholder {
+  color: var(--color-gray-4);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-weight-regular);
+}
+
+.input:not(:placeholder-shown):not(:invalid) {
+  border: 1px solid var(--color-gray-9);
+}
+
+/* Sizes */
+.input.size-small {
+  font-size: var(--font-size-14);
+  height: 36px;
+  line-height: 20px;
+  padding: var(--padding-xy-14-8);
+}
+
+.input.size-regular {
+  font-size: var(--font-size-16);
+  height: 40px;
+  line-height: 24px;
+  padding: var(--padding-xy-16-8);
+}
+
+.input.size--full {
+  width: 100%;
+}
+
+.input-message {
+  color: var(--color-gray-4);
+  display: block;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+
+  width: 100%; /* Garante que a mensagem de erro acompanhe o tamanho do input */
+  max-width: fit-content; /* Evita que ela fique maior que o necessário */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  /* width: fit-content;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;  Quebra palavras longas 
+  word-wrap: break-word;  Garante a quebra correta
+  white-space: normal; Mantém comportamento de quebra */
+}
+
+/* Utils */
+.input.icon-left {
+  padding: 40px;
+}
+
+.input.icon-right {
+  padding: 32px;
+}
+
+.input-error,
+.input-error:hover {
+  box-shadow: 0 0 0 1px var(--color-semantic-danger);
+}
+
+.input-error:focus-visible {
+  box-shadow: 0 0 0 1px var(--color-semantic-danger);
+  outline: solid 2px var(--color-semantic-danger);
+}
+
+.input-message-error {
+  color: var(--color-semantic-danger);
+}

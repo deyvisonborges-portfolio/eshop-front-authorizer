@@ -3,7 +3,7 @@ import styles from "./button.module.css";
 
 export type ButtonSize = "mini" | "small" | "medium" | "regular" | "large";
 export type ButtonVariant = "squared" | "rounded" | "pill";
-export type ButtonColor = "primary" | "secondary";
+export type ButtonColor = "primary" | "secondary" | "";
 
 type ButtonProps = {
   color?: ButtonColor;

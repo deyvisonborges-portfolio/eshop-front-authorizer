@@ -1,17 +1,21 @@
 "use client";
 
+import styles from "./input.module.css";
+
 import { ComponentPropsWithRef, forwardRef, useMemo, useState } from "react";
-import { Text } from "../text";
 import Image from "next/image";
 
+type InputSize = "small" | "regular" | "full";
 type InputType = "text" | "password" | "email";
 type InputProps = {
   name: string;
+  zsize?: InputSize;
   label?: string;
   type?: InputType;
   variant?: "default" | "underline";
   customMessage?: string;
-  has?: { 
+  has?: {
+    error?: boolean;
     eyeIcon?: boolean;
   };
 } & ComponentPropsWithRef<"input">;
@@ -24,55 +28,72 @@ const renderPlaceholderTypeText: Record<InputType, string> = {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { name, type, variant, label, customMessage, required, has, ...props },
+    {
+      zsize = "regular",
+      name,
+      type,
+      variant,
+      label,
+      customMessage,
+      required,
+      has,
+      ...props
+    },
     ref
   ) => {
-    const [hasEyeIcon, setEyeIcon] = useState<boolean>(true);
-
-    if (type === "password") {
-      has = {
-        eyeIcon: true,
-      };
-    }
-
-    const renderIcon = () =>
-      useMemo(() => {
-        if (type === "password") {
-          return (
-            <Image
-              alt="Password input eye icon"
-              height={20}
-              onClick={() => setEyeIcon(!hasEyeIcon)}
-              src={`/svgs/eye-${hasEyeIcon ? "close" : "open"}-black-16.svg`}
-              width={20}
-            />
-          );
-        }
-      }, []);
+    const [isInvalid, setIsInvalid] = useState(false);
+    console.log("9s");
+    const renderCustomMessage = () => {
+      console.log("ops");
+      console.log(required);
+      return (
+        customMessage && (
+          <p
+            className={[
+              styles["input-message"],
+              has?.error && styles["input-message-error"],
+            ].join(" ")}
+          >
+            {customMessage}
+          </p>
+        )
+      );
+    };
 
     return (
-      <div id="container">
-        {label && (
-          <label id="input-label" htmlFor={name}>
-            {label}
-          </label>
-        )}
+      <div className={styles["input-wrapper"]}>
+        <div className={[styles.label, styles["input-container"]].join(" ")}>
+          {label && (
+            <label
+              id="input-label"
+              htmlFor={name}
+              className={`${styles[`label-size-${zsize}`]}`}
+            >
+              {label}
+            </label>
+          )}
 
-        <div id="input-wrapper">
-          <input
-            {...props}
-            ref={ref}
-            id={name}
-            name={name}
-            type={type}
-            required={required}
-            placeholder={type ? renderPlaceholderTypeText[type] : ""}
-          />
-
-          {renderIcon()}
+          <div>
+            <input
+              className={[
+                styles.input,
+                styles[`size-${zsize}`],
+                has?.error && styles["input-error"],
+              ].join(" ")}
+              {...props}
+              ref={ref}
+              id={name}
+              name={name}
+              type={type}
+              required={required}
+              placeholder={type ? renderPlaceholderTypeText[type] : ""}
+              onBlur={(e) => setIsInvalid(!e.target.validity.valid)}
+              onFocus={(e) => setIsInvalid(!e.target.validity.valid)}
+            />
+          </div>
         </div>
 
-        {customMessage && <Text>{customMessage}</Text>}
+        {renderCustomMessage()}
       </div>
     );
   }
