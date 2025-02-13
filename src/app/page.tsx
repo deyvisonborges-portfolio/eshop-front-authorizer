@@ -1,5 +1,6 @@
 "use client";
 import { Button, Form, Input } from "@/@lib-ui";
+import { InputRadio } from "@/@lib-ui/src/core-components/input-radio";
 import { EyeIcon } from "@/lib/icons/eye";
 // import { Button } from "@/components/button";
 import { ThemeProvider } from "@/styles/theme.provider";
@@ -79,6 +80,13 @@ export default function Home() {
   return (
     <ThemeProvider>
       <Form onSubmit={() => console.log("fe")}>
+        <InputRadio
+          radioSize="small"
+          label="Custom label"
+          toggleChecked={function (value: boolean): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
         <Input
           name="tedt"
           label="E-mail"

@@ -3,7 +3,6 @@
 import styles from "./input.module.css";
 
 import { ComponentPropsWithRef, forwardRef, useMemo, useState } from "react";
-import Image from "next/image";
 
 type InputSize = "small" | "regular" | "full";
 type InputType = "text" | "password" | "email";
@@ -42,10 +41,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const [isInvalid, setIsInvalid] = useState(false);
-    console.log("9s");
+
     const renderCustomMessage = () => {
-      console.log("ops");
-      console.log(required);
       return (
         customMessage && (
           <p
@@ -78,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               className={[
                 styles.input,
                 styles[`size-${zsize}`],
-                has?.error && styles["input-error"],
+                (has?.error || isInvalid) && styles["input-error"],
               ].join(" ")}
               {...props}
               ref={ref}
