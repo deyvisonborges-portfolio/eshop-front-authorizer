@@ -1,5 +1,6 @@
 "use client";
 import { Button, Form, Input } from "@/@lib-ui";
+import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox";
 import { InputRadio } from "@/@lib-ui/src/core-components/input-radio";
 import { EyeIcon } from "@/lib/icons/eye";
 // import { Button } from "@/components/button";
@@ -87,6 +88,10 @@ export default function Home() {
             throw new Error("Function not implemented.");
           }}
         />
+
+        <InputCheckbox checkboxSize="small" label="small" />
+        <InputCheckbox checkboxSize="regular" label="regular" />
+
         <Input
           name="tedt"
           label="E-mail"
