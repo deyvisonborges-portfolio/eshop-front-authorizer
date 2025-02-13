@@ -1,59 +1,44 @@
 "use client";
 
-import { Button, Form, Heading, Text } from "@/@lib-ui";
+import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox";
+import styles from "./form-login.module.css";
+import { Button, Form, Heading, Input, Text } from "@/@lib-ui";
+import Github from "@/@lib-icons/src/icons/github";
+import GoogleDrive from "@/@lib-icons/src/icons/google";
 
 export function FormLogin() {
   return (
-    <div id="container">
-      <header>
-        <Heading as="h1" size="large" weight="medium">
-          Create an account
+    <div className={styles.card}>
+      <div className={styles["card-header"]}>
+        <Heading as="h5" size="small" weight="bold" className={styles.heading}>
+          Entre na sua conta
         </Heading>
-        <Text>Enter your email below to create your account</Text>
-
-        <div data-testid="form-container">
-          <Form>
-            <input type="email" placeholder="name@example.com" />
-            <Button>Sign In with Email</Button>
-          </Form>
-        </div>
-      </header>
-
-      <footer>
-        <div>
-          <input type="checkbox" />
-          <label htmlFor="">Remember-me</label>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-export function InputPassword() {
-  return (
-    <div>
-      <div id="label-container" className="flex items-center justify-center">
-        <span>Password</span>
-        <button id="button-link">Forget your password?</button>
+        <Text className={styles.subtext}>
+          Informe seu e-mail e senha para autenticar
+        </Text>
       </div>
-      <input type="password" placeholder="*****" />
-    </div>
-  );
-}
 
-export function SocialLogin() {
-  /**
-   * display grid
-   * grid-template-columns: repeat(1fr, 3)
-   * gap: 24px;
-   *
-   * cada botao deve ser 100%
-   */
-  return (
-    <div id="container" className="grid w-100">
-      <button id="button-icon">Google Icon</button>
-      <button id="button-icon">Apple Icon</button>
-      <button id="button-icon">Github Icon</button>
+      <Form className={styles.form}>
+        <Input name="email" placeholder="example@example.com" isFull />
+        <Button isFull variant="rounded">
+          Sign In with Email
+        </Button>
+      </Form>
+
+      <div className={styles["remember-me-container"]}>
+        <InputCheckbox label="Matenha-me conectado" />
+      </div>
+
+      <hr />
+
+      <div className={styles.social}>
+        <div className={styles["social-item"]}>
+          <Github />
+        </div>
+        <div className={styles["social-item"]}>
+          <GoogleDrive />
+        </div>
+      </div>
     </div>
   );
 }

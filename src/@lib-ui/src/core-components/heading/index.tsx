@@ -15,15 +15,24 @@ type HeadingProps = {
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (
-    { as, children, formatting = "normal", weight = "regular", size, ...props },
+    {
+      as,
+      children,
+      formatting = "normal",
+      weight = "regular",
+      className,
+      size,
+      ...props
+    },
     ref
   ) => {
     const El = as;
 
-    const className = [
+    const classNames = [
       size && styles[`size-${size}`],
       styles[`weight-${weight}`],
       styles[`formatting-${formatting}`],
+      className,
     ]
       .filter(Boolean)
       .join(" ");
@@ -31,7 +40,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
     return createElement(El, {
       ...props,
       ref,
-      className,
+      className: classNames,
       children,
     });
   }

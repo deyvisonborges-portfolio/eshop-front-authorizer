@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 532px;
+  height: fit-content;
+  padding: 24px;
+  width: 100%;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.remember-me-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
+}
+
+.social {
+  display: grid;
+  grid-template-columns: repeat(1r, 2);
+  gap: 24px;
+}
+
+.social-item {
+  border: 1px solid var(--color-gray-4);
+  border-radius: var(--border-radius-8);
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  width: 100%;
+}

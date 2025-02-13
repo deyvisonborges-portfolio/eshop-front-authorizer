@@ -10,6 +10,7 @@ type ButtonProps = {
   size?: ButtonSize;
   variant?: ButtonVariant;
   icon?: React.ReactNode;
+  isFull?: boolean;
 } & ComponentPropsWithRef<"button">;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -21,6 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "squared",
       icon,
       className,
+      isFull,
       ...props
     },
     ref
@@ -36,6 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ${styles[`button--${size}`]} 
           ${styles[`button--${variant}`]} 
           ${icon ? styles.withIcon : ""}
+          ${isFull && styles.full}
           ${className || ""}
         `.trim()}
         {...props}

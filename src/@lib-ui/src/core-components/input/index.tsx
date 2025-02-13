@@ -4,7 +4,7 @@ import styles from "./input.module.css";
 
 import { ComponentPropsWithRef, forwardRef, useMemo, useState } from "react";
 
-type InputSize = "small" | "regular" | "full";
+type InputSize = "small" | "regular";
 type InputType = "text" | "password" | "email";
 type InputProps = {
   name: string;
@@ -13,6 +13,7 @@ type InputProps = {
   type?: InputType;
   variant?: "default" | "underline";
   customMessage?: string;
+  isFull?: boolean;
   has?: {
     error?: boolean;
     eyeIcon?: boolean;
@@ -35,7 +36,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       label,
       customMessage,
       required,
+      placeholder,
       has,
+      isFull,
       ...props
     },
     ref
@@ -58,7 +61,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={styles["input-wrapper"]}>
+      <div
+        className={[
+          styles["input-wrapper"],
+          isFull && styles.full, // Garante que o wrapper fique 100%
+        ].join(" ")}
+      >
         <div className={[styles.label, styles["input-container"]].join(" ")}>
           {label && (
             <label
@@ -70,24 +78,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </label>
           )}
 
-          <div>
-            <input
-              className={[
-                styles.input,
-                styles[`size-${zsize}`],
-                (has?.error || isInvalid) && styles["input-error"],
-              ].join(" ")}
-              {...props}
-              ref={ref}
-              id={name}
-              name={name}
-              type={type}
-              required={required}
-              placeholder={type ? renderPlaceholderTypeText[type] : ""}
-              onBlur={(e) => setIsInvalid(!e.target.validity.valid)}
-              onFocus={(e) => setIsInvalid(!e.target.validity.valid)}
-            />
-          </div>
+          <input
+            className={[
+              styles.input,
+              styles[`size-${zsize}`],
+              isFull && styles.full,
+              (has?.error || isInvalid) && styles["input-error"],
+            ].join(" ")}
+            {...props}
+            ref={ref}
+            id={name}
+            name={name}
+            type={type}
+            required={required}
+            placeholder={placeholder}
+            onBlur={(e) => setIsInvalid(!e.target.validity.valid)}
+            onFocus={(e) => setIsInvalid(!e.target.validity.valid)}
+          />
         </div>
 
         {renderCustomMessage()}

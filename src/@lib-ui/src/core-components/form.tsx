@@ -14,9 +14,9 @@ type FormProps = {
 // }
 
 export const Form = forwardRef<HTMLFormElement, FormProps>(
-  ({ children, utilities, ...props }, ref) => {
+  ({ children, utilities, className, ...props }, ref) => {
     return (
-      <form ref={ref} {...props} className={utilities?.join(" ")}>
+      <form ref={ref} {...props} className={className}>
         {children}
       </form>
     );

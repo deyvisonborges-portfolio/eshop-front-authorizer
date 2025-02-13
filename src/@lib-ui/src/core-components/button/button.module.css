@@ -7,6 +7,7 @@
   font-weight: var(--font-weight-regular);
   justify-content: center;
   transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
 .button:hover {
@@ -117,6 +118,10 @@
 .button--with-icon {
   display: inline-flex;
   align-items: center;
+}
+
+.button.full {
+  width: 100%;
 }
 
 /* 

@@ -26,6 +26,7 @@ export const Text = forwardRef<RefProps, TextProps>(
       weight = "regular",
       decoration = "normal",
       type = "p",
+      className,
       // token,
       ...props
     },
@@ -42,7 +43,8 @@ export const Text = forwardRef<RefProps, TextProps>(
         className: `
           ${styles[`size-${size}`]}
           ${styles[`weight-${weight}`]}
-          ${styles[`style-${decoration}`]}
+          ${styles[`style-${decoration}`]},
+          ${className}
         `,
       },
       children
