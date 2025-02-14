@@ -92,11 +92,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             type={type}
             required={required}
             placeholder={placeholder}
-            onBlur={(e) => setIsInvalid(!e.target.validity.valid)}
-            onFocus={(e) => setIsInvalid(!e.target.validity.valid)}
           />
         </div>
-
         {renderCustomMessage()}
       </div>
     );

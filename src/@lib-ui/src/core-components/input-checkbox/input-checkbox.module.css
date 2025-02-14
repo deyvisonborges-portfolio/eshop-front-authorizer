@@ -70,6 +70,12 @@
   width: 24px;
 }
 
+.label {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+}
+
 .label--disabled {
   color: var(--color-gray-3);
   cursor: not-allowed;

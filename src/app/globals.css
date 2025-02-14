@@ -1,43 +1,3 @@
-/* @import "../styles/theme.css"; */
-
-/* @config "../../tailwind.config.ts"; */
-
-/* @import "tailwindcss"; */
-
-/* @variant dark (&:where([data-theme="dark"], [data-theme="dark"] *)); */
-
-/* @layer base {
-  html {
-    --color-primary: #4285f4;
-    --color-secondary: #34a853;
-    --color-deyvin: red;
-  }
-
-  [data-theme="light"] {
-    --color-primary: #000;
-    --color-secondary: #333;
-  }
-
-  [data-theme="dark"] {
-    --color-primary: #fff;
-    --color-secondary: #ddd;
-  }
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-*/
-
 @import "../@lib-tokens/dist/index.min.css";
 
 * {
@@ -49,8 +9,4 @@ body {
 html,
 body {
   height: 100%;
-}
-
-body {
-  min-height: 100vh;
 }

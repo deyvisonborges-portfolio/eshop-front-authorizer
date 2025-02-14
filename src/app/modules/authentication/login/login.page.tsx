@@ -1,12 +1,10 @@
-"use client";
-
+import styles from "./login.page.module.css";
 import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox";
-import styles from "./form-login.module.css";
 import { Button, Form, Heading, Input, Text } from "@/@lib-ui";
 import Github from "@/@lib-icons/src/icons/github";
 import GoogleDrive from "@/@lib-icons/src/icons/google";
 
-export function FormLogin() {
+export function LoginPage() {
   return (
     <div className={styles.card}>
       <div className={styles["card-header"]}>
@@ -19,25 +17,31 @@ export function FormLogin() {
       </div>
 
       <Form className={styles.form}>
-        <Input name="email" placeholder="example@example.com" isFull />
+        <Input
+          name="email"
+          label="E-mail"
+          placeholder="example@example.com"
+          isFull
+          required
+        />
+        <Input
+          name="password"
+          label="Senha"
+          type="password"
+          placeholder="Informe sua senha"
+          isFull
+          required
+        />
         <Button isFull variant="rounded">
-          Sign In with Email
+          Autenticar
         </Button>
       </Form>
 
-      <div className={styles["remember-me-container"]}>
-        <InputCheckbox label="Matenha-me conectado" />
-      </div>
-
-      <hr />
-
-      <div className={styles.social}>
-        <div className={styles["social-item"]}>
-          <Github />
-        </div>
-        <div className={styles["social-item"]}>
-          <GoogleDrive />
-        </div>
+      <div className={styles["container-actions"]}>
+        <InputCheckbox checkboxSize="small" label="Matenha-me conectado" />
+        <Text decoration="link" size="medium">
+          Esqueci minha senha
+        </Text>
       </div>
     </div>
   );
