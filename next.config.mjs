@@ -2,7 +2,7 @@
 const nextConfig = {
   compiler: {
     // removeConsole: true,
-    reactRemoveProperties: { properties: ["^data-testid$"] },
+    // reactRemoveProperties: { properties: ["^data-testid$"] },
   },
 };
 

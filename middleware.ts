@@ -50,3 +50,11 @@
 //     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
 //   ],
 // };
+
+import { NextRequest, NextResponse } from "next/server";
+
+export function middleware(req: NextRequest) {
+  const session = req.cookies.get("session");
+  console.log("Sessão ativa:", session);
+  return NextResponse.next();
+}
