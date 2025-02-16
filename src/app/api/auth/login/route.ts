@@ -2,20 +2,34 @@
 
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 const SECRET_KEY = process.env.JWT_SECRET || "secreta-super-segura";
 
 export async function POST(request: Request) {
+  // Simula um delay para teste (remova em produção)
   await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  // Recupera os dados enviados no corpo da requisição
   const data = await request.json();
 
+  // 1. **Validação do Token CSRF**
+  // Pega o token CSRF que veio no header da requisição
+  const csrfHeader = request.headers.get("X-CSRF-Token");
+  // Recupera o cookie onde o token CSRF foi armazenado anteriormente
+  const cookieStore = cookies();
+  const csrfCookie = (await cookieStore).get("csrfToken")?.value;
+
+  if (!csrfHeader || !csrfCookie || csrfHeader !== csrfCookie) {
+    return NextResponse.json({ error: "CSRF token inválido" }, { status: 403 });
+  }
+
+  // 2. **Validação dos dados de login**
   const errors: { email?: string[]; password?: string[] } = {};
 
   if (!data.email) {
     errors.email = ["Email é obrigatório"];
   }
-
   if (!data.password) {
     errors.password = ["Senha é obrigatória"];
   }
@@ -24,30 +38,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: errors }, { status: 400 });
   }
 
-  // Simula uma autenticação real
+  // 3. **Simula autenticação**
   if (data.email === "admin@example.com" && data.password === "123456") {
-    // Criar token JWT válido por 1 hora
+    // Cria um token JWT válido por 1 hora
     const token = jwt.sign({ email: data.email }, SECRET_KEY, {
       expiresIn: "1h",
     });
 
-    // Criar resposta com cookie HttpOnly
+    // Cria a resposta e define o cookie da sessão com o token JWT
     const response = NextResponse.json({ success: true });
-
-    // (await cookies()).set("session", token, {
-    //   httpOnly: true, // Impede acesso via JavaScript no cliente (segurança)
-    //   secure: process.env.NODE_ENV === "production", // HTTPS apenas em produção
-    //   sameSite: "strict", // Previne ataques CSRF
-    //   path: "/", // Disponível para toda a aplicação
-    //   maxAge: 60 * 60 * 24, // Expira em 1 dia
-    // });
-
     response.cookies.set({
       name: "session",
       value: token,
-      httpOnly: true, // Protege contra ataques XSS
-      secure: process.env.NODE_ENV === "production", // Só HTTPS em produção
-      sameSite: "strict", // ou lax
+      httpOnly: true, // Protege contra acesso via JavaScript
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
       path: "/",
     });
 

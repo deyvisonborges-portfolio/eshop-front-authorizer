@@ -11,13 +11,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // https://youtu.be/XSbMSSdGSdg
 export const formLoginSchema = z.object({
-  email: z
-    .string()
-    .email({ message: "Digite um e-mail válido" })
-    .toLowerCase()
-    .refine((email) => {
-      return email.endsWith("@gmail.com");
-    }, "Informe um e-mail do Gmail"),
+  email: z.string().email({ message: "Digite um e-mail válido" }).toLowerCase(),
+  // .refine((email) => {
+  //   return email.endsWith("@gmail.com");
+  // }, "Informe um e-mail do Gmail"),
   password: z
     .string()
     .min(1, { message: "Não pode ser vazio" })
@@ -55,9 +52,19 @@ export function LoginPage() {
   const handleAuthenticate = async (d: LoginSchema) => {
     // se for chamar diretamente a server action, usar o useActionState
     // const result = await authenticateUser(d);
+    const csrfResponse = await fetch("/api/auth/csrf", {
+      credentials: "include",
+    });
+    const { csrfToken } = await csrfResponse.json();
+
+    console.log("[MODULE - LOGIN][GET] Get CSRF token");
+
     const response = await fetch("/api/auth/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken,
+      },
       body: JSON.stringify(d),
     });
 
