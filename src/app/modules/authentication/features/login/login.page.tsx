@@ -39,24 +39,31 @@ export function LoginPage() {
     resolver: zodResolver(formLoginSchema),
   });
 
+  const fetchCSRF = async () => {
+    const response = await fetch("/api/auth/csrf");
+    const { token } = await response.json(); // Corrigido para `token`
+    return token;
+  };
+
   const handleAuthenticate = async (d: LoginSchema) => {
-    // se for chamar diretamente a server action, usar o useActionState
-    // const result = await authenticateUser(d);
-    const csrfResponse = await fetch("/api/auth/csrf", {
-      credentials: "include",
-    });
-    const { csrfToken } = await csrfResponse.json();
+    const csrfToken = await fetchCSRF();
 
-    console.log("[MODULE - LOGIN][GET] Get CSRF token");
-
-    const response = await fetch("/api/auth/login", {
+    const response = await fetch("/api/auth/csrf-validation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": csrfToken,
       },
-      body: JSON.stringify(d),
     });
+
+    // const response = await fetch("/api/auth/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "X-CSRF-Token": csrfToken,
+    //   },
+    //   body: JSON.stringify(d),
+    // });
 
     const result = await response.json();
     if (result.error) {
