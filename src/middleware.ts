@@ -14,6 +14,7 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // https://www.youtube.com/watch?v=Otq0LY90Qso&t=459s&ab_channel=CosdenSolutions
   return NextResponse.next();
 }
 

@@ -26,16 +26,6 @@ export const formLoginSchema = z.object({
     // })
     .trim(),
 });
-// Adicionar isso na tela de registro
-// .superRefine((val, ctx) => {
-//   if (val.password !== val.confirmPassword) {
-//     ctx.addIssue({
-//       code: z.ZodIssueCode.custom,
-//       message: "Senhas não combinam",
-//       path: ["confirmPassword"],
-//     });
-//   }
-// });
 
 type LoginSchema = z.infer<typeof formLoginSchema>;
 

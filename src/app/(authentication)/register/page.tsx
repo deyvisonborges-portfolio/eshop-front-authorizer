@@ -1,7 +1,5 @@
-export default function RegisterPage() {
-  return (
-    <div>
-      <h1>Register Page</h1>
-    </div>
-  );
+import { RegisterPage } from "@/app/modules/authentication/register/register.page";
+
+export default function _RegisterPage() {
+  return <RegisterPage />;
 }
