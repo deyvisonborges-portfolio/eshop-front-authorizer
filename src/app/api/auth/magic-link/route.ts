@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { randomBytes } from "crypto";
 import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
+import { redirect } from "next/navigation";
 
 // Tempo de expiração do Magic Link (15 minutos)
 const MAGIC_LINK_EXPIRATION = 15 * 60 * 1000;
@@ -41,7 +42,6 @@ export async function POST(req: Request) {
     const magicLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/magic-link?token=${token}`;
 
     // Enviar e-mail (simulação)
-    console.log(`Magic Link enviado para ${email}: ${magicLink}`);
 
     return NextResponse.json({ message: "Magic link sent!" });
   } catch (error) {
