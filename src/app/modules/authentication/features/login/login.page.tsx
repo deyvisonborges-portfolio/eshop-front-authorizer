@@ -36,47 +36,62 @@ export function LoginPage() {
     setError,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<LoginSchema>({
+    defaultValues: {
+      email: "admin@example.com",
+      password: "123456",
+    },
     resolver: zodResolver(formLoginSchema),
   });
 
   const fetchCSRF = async () => {
     const response = await fetch("/api/auth/csrf");
-    const { token } = await response.json(); // Corrigido para `token`
-    return token;
+    const { data } = await response.json(); // Corrigido para `token`
+    return data;
   };
 
   const handleAuthenticate = async (d: LoginSchema) => {
     const csrfToken = await fetchCSRF();
 
-    const response = await fetch("/api/auth/csrf-validation", {
+    const csrfResponseValidation = await fetch("/api/auth/csrf-validation", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": csrfToken,
+      },
+    });
+
+    const csrfResultValidation = await csrfResponseValidation.json();
+    // IISSUE: tratar isso aqui, pois nao faz sentido
+    if (csrfResultValidation.error) {
+      console.log("deu erro no csrf validation");
+      // https://react-hook-form.com/docs/useform/seterror
+      setError("email", {
+        type: "manual",
+        message: csrfResultValidation?.error?.email?.[0] || "Unknown error",
+      });
+    }
+
+    const response = await fetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": csrfToken,
       },
+      body: JSON.stringify(d),
     });
-
-    // const response = await fetch("/api/auth/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "X-CSRF-Token": csrfToken,
-    //   },
-    //   body: JSON.stringify(d),
-    // });
 
     const result = await response.json();
     if (result.error) {
       // https://react-hook-form.com/docs/useform/seterror
-      setError("email", {
+      setError("root", {
         type: "manual",
-        message: result?.error?.email?.[0] || "Unknown error",
+        message: result?.error || "Unknown error",
       });
     }
   };
 
   return (
     <div className={styles.card}>
+      <p style={{ color: "red" }}>{errors.root?.message}</p>
       <div className={styles["card-header"]}>
         <Heading as="h5" size="small" weight="bold" className={styles.heading}>
           Entre na sua conta

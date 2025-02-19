@@ -20,3 +20,6 @@ export async function GET() {
     return NextResponse.json({ authenticated: false });
   }
 }
+
+// create session
+export async function POST() {}

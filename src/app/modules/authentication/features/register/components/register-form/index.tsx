@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const registerFormZodSchema = z
+export const registerFormZodSchema = z
   .object({
     name: z
       .string()
@@ -39,7 +39,7 @@ const registerFormZodSchema = z
     }
   });
 
-type RegisterFormSchema = z.infer<typeof registerFormZodSchema>;
+export type RegisterFormSchema = z.infer<typeof registerFormZodSchema>;
 
 export function RegisterForm() {
   const {

@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     return createResponse(500, undefined, "Server error");
   }
 
-  const token = req.headers.get(AUTH_CONSTANTS.cookie.csrfHeaderToken)?.trim();
+  const token = req.headers.get("X-CSRF-Token")?.trim();
 
   if (!token) {
     return createResponse(400, undefined, "CSRF token missing");

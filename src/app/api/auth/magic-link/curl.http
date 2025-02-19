@@ -1,0 +1,2 @@
+curl -X POST http://localhost:3000/api/auth/magic-link -H "Content-Type: application/json" -d '{"email": "user@email.com"}'
+curl -X GET "http://localhost:3000/api/auth/magic-link?token=TOKEN_AQUI"

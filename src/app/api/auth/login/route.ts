@@ -1,55 +1,52 @@
-"use server";
-
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { createResponse } from "@/app/utils/response-helper";
-import { AUTH_CONSTANTS } from "@/app/modules/authentication/constants";
+import { NextResponse } from "next/server";
 
-export async function POST(request: Request) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
-  const data = await request.json();
-
-  // 2. **Validação dos dados de login**
+function validateEntries(data: { email: string; password: string }) {
   const errors: Record<string, string[]> = {};
-
   if (!data.email) {
     errors.email = ["Email é obrigatório"];
   }
   if (!data.password) {
     errors.password = ["Senha é obrigatória"];
   }
-
   if (Object.keys(errors).length > 0) {
-    return createResponse(400, JSON.stringify(errors)); // 🔥 Convertendo errors para string
+    return createResponse(400, JSON.stringify(errors));
   }
+}
 
-  // 3. **Simula autenticação**
-  if (data.email === "admin@example.com" && data.password === "123456") {
-    const token = jwt.sign(
-      { email: data.email },
-      AUTH_CONSTANTS.secret.csrfKey,
-      {
-        expiresIn: "1h",
-      }
+export async function POST(request: Request) {
+  const input = await request.json();
+  validateEntries(input);
+  const response = await fetch("http://localhost:3000/api/mongo/users", {
+    method: "GET",
+  });
+
+  const data = (await response.json()) as [
+    { id: string; email: string; passwordHash: string }
+  ];
+
+  const user = data.find((user) => user.email === input.email);
+
+  if (!user)
+    return NextResponse.json(
+      { error: "Usuário não encontrado" },
+      { status: 401 }
     );
 
-    // Define o cookie da sessão com o token JWT
-    (
-      await // Define o cookie da sessão com o token JWT
-      cookies()
-    ).set("session", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      path: "/",
-    });
-
-    return createResponse(200, JSON.stringify({ success: true })); // 🔥 Convertendo para string
-  }
-
-  return createResponse(
-    401,
-    JSON.stringify({ email: ["Email ou senha incorretos"] })
+  const token = jwt.sign(
+    { id: user.id, email: user.email },
+    String(process.env.JWT_SECRET),
+    { expiresIn: "1h" }
   );
+
+  (await cookies()).set("session", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    path: "/",
+  });
+
+  return createResponse(200, JSON.stringify({ success: true }));
 }
