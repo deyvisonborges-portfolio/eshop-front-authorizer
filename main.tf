@@ -1,3 +1,4 @@
+# https://dev.to/mohammedalics/simplifying-keycloak-configuration-with-terraform-and-terragrunt-3ohm
 terraform {
   required_providers {
     keycloak = {
