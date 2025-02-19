@@ -1,8 +1,9 @@
 "use client";
+
 import { LoginPage } from "@/app/modules/authentication/features/login/login.page";
 import { useSession } from "@/hooks/use-session";
 
-export default function _LoginPage() {
+export default function LoginAppPage() {
   const { authenticated, user } = useSession();
   console.log(authenticated, user);
   return <LoginPage />;

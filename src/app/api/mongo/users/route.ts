@@ -1,17 +1,19 @@
 import { getCollection } from "@/app/integrations/mongo-compass.client";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
+import { CreateUserType } from "./types";
 
 /**
  * POST: Cria um novo usuário
  */
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body = (await req.json()) as CreateUserType;
 
-    if (!body.email || !body.password) {
+    const { email, password, name } = body;
+    if (!email || !password || !name) {
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: "Email, password, and name are required" },
         { status: 400 }
       );
     }

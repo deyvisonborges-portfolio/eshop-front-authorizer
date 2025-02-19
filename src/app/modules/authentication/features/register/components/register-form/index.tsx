@@ -5,6 +5,8 @@ import styles from "./register-form.module.css";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MongoUserService } from "@/app/modules/authentication/service/mongo/mongo-user.service";
+import { CreateUserType } from "@/app/api/mongo/users/types";
 
 export const registerFormZodSchema = z
   .object({
@@ -50,8 +52,13 @@ export function RegisterForm() {
     resolver: zodResolver(registerFormZodSchema),
   });
 
-  const handleSubmitData = (data: RegisterFormSchema) => {
-    console.log(data);
+  const handleSubmitData = async (data: RegisterFormSchema) => {
+    const mongoService = new MongoUserService();
+    const user: CreateUserType = { ...data };
+    await mongoService.createUser(user);
+    await fetch("/api/nodemailer", {
+      method: "POST",
+    });
   };
 
   return (
