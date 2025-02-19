@@ -1,6 +1,7 @@
 "use client";
 import { Button, Form, Input } from "@/@lib-ui";
 import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox";
+import InputOTP from "@/@lib-ui/src/core-components/input-otp";
 import { InputRadio } from "@/@lib-ui/src/core-components/input-radio";
 import { EyeIcon } from "@/lib/icons/eye";
 // import { Button } from "@/components/button";
@@ -80,6 +81,7 @@ import { ThemeProvider } from "@/styles/theme.provider";
 export default function Home() {
   return (
     <ThemeProvider>
+      <InputOTP />
       <Form onSubmit={() => console.log("fe")}>
         <InputRadio
           radioSize="small"

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useLayoutEffect, useState } from "react";
 
 export function useSession() {
   const [session, setSession] = useState<{

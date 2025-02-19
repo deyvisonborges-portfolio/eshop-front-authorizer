@@ -6,6 +6,7 @@ import { Button, Form, Heading, Input, Text } from "@/@lib-ui";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "next/navigation";
 // import Github from "@/@lib-icons/src/icons/github";
 // import GoogleDrive from "@/@lib-icons/src/icons/google";
 
@@ -87,6 +88,7 @@ export function LoginPage() {
         message: result?.error || "Unknown error",
       });
     }
+    setTimeout(redirect("/otp"));
   };
 
   return (
