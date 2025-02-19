@@ -15,8 +15,8 @@ provider "keycloak" {
   initial_login = true
 }
 
-resource "keycloak_realm" "eshop-front-authorizer-healm" {
-  realm        = "eshop-front-authorizer-healm"
+resource "keycloak_realm" "eshop" {
+  realm        = "eshop"
   enabled      = true
-  display_name = "Eshop Store Front Healm"
+  display_name = "Manage eshop services"
 }
