@@ -1,4 +1,4 @@
-import { IconProps } from "../types";
+import { IconProps } from "../../types";
 
 export const renderIconSize = (size: IconProps["size"] = "regular") => {
   switch (size) {

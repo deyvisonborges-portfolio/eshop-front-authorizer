@@ -1,4 +1,4 @@
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 import { renderIconSize } from "./utils/render-icon-size";
 
 export function EyeIcon({ size, color = "black" }: IconProps) {

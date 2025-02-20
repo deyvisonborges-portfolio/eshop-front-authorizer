@@ -1,7 +1,7 @@
-import { getCollection } from "@/app/integrations/mongo-compass.client";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 import { CreateUserType } from "./types";
+import { getCollection } from "@/integrations/mongo-compass.client";
 
 /**
  * POST: Cria um novo usuário
