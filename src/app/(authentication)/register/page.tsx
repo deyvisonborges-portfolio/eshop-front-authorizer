@@ -1,5 +1,5 @@
-import { RegisterPage } from "@/app/modules/authentication/features/register/register.page";
+import { RegisterPage } from "@/modules/authentication/features/register/register.page";
 
-export default function _RegisterPage() {
+export default function RegisterAppPage() {
   return <RegisterPage />;
 }

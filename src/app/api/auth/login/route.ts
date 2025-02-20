@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import { createResponse } from "@/app/utils/response-helper";
 import { NextResponse } from "next/server";
+import { createResponse } from "@/utils/response-helper";
 
 function validateEntries(data: { email: string; password: string }) {
   const errors: Record<string, string[]> = {};

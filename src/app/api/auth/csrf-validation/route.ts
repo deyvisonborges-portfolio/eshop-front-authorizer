@@ -1,6 +1,6 @@
+import { AUTH_CONSTANTS } from "@/modules/authentication/constants";
+import { createResponse } from "@/utils/response-helper";
 import crypto from "crypto";
-import { AUTH_CONSTANTS } from "@/app/modules/authentication/constants";
-import { createResponse } from "@/app/utils/response-helper";
 
 export async function POST(req: Request) {
   if (!AUTH_CONSTANTS.secret.csrfKey) {

@@ -1,9 +1,9 @@
-import { getCollection } from "@/app/integrations/mongo-compass.client";
 import { NextResponse } from "next/server";
 import { randomBytes } from "crypto";
 import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
 import { redirect } from "next/navigation";
+import { getCollection } from "@/integrations/mongo-compass.client";
 
 // Tempo de expiração do Magic Link (15 minutos)
 const MAGIC_LINK_EXPIRATION = 15 * 60 * 1000;

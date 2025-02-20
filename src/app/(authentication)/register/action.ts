@@ -1,6 +1,6 @@
 "use server";
 
-import { registerFormZodSchema } from "@/app/modules/authentication/features/register/components/register-form";
+import { registerFormZodSchema } from "@/modules/authentication/features/register/components/register-form";
 
 interface FormData {
   get(name: string): string | null;

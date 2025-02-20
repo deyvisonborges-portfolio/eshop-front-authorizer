@@ -1,6 +1,6 @@
+import { AUTH_CONSTANTS } from "@/modules/authentication/constants";
+import { createResponse } from "@/utils/response-helper";
 import crypto from "crypto";
-import { AUTH_CONSTANTS } from "@/app/modules/authentication/constants";
-import { createResponse } from "@/app/utils/response-helper";
 import { NextResponse } from "next/server";
 
 export async function GET() {
