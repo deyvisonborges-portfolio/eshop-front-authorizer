@@ -8,10 +8,11 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles["header-left"]}>
-        <Heading as="h5" size="small" weight="bold">
-          eshop
-        </Heading>
-
+        <Link href="/">
+          <Heading as="h5" size="small" weight="bold">
+            eshop
+          </Heading>
+        </Link>
         <Navigation />
       </div>
 

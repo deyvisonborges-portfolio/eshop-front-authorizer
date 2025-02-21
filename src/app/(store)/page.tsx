@@ -6,6 +6,8 @@ import { InputRadio } from "@/@lib-ui/src/core-components/input-radio";
 import { EyeIcon } from "@/@lib-icons/src/icons/eye";
 // import { Button } from "@/components/button";
 import { ThemeProvider } from "@/styles/theme.provider";
+import { ProductCard } from "@/modules/store/features/products/components/product-card";
+import Link from "next/link";
 
 // <Button />
 //       <EyeIcon />
@@ -81,44 +83,9 @@ import { ThemeProvider } from "@/styles/theme.provider";
 export default function Home() {
   return (
     <>
-      <InputOTP />
-      <Form onSubmit={() => console.log("fe")}>
-        <InputRadio
-          radioSize="small"
-          label="Custom label"
-          toggleChecked={function (value: boolean): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-
-        <InputCheckbox checkboxSize="small" label="small" />
-        <InputCheckbox checkboxSize="regular" label="regular" />
-
-        <Input
-          name="tedt"
-          label="E-mail"
-          type="email"
-          customMessage="Deu um erro"
-          required
-        />
-        <Input
-          zsize="small"
-          name="test2"
-          label="E-mail"
-          type="email"
-          customMessage="Deu um erro"
-          required
-        />
-        <Input
-          zsize="small"
-          name="tes4"
-          label="E-mail"
-          type="text"
-          customMessage="Mensagem de erro bem grondona"
-          has={{ error: true }}
-        />
-      </Form>
-      <button type="submit">Clicar</button>
+      <Link href="/product/test">
+        <ProductCard />
+      </Link>
     </>
   );
 }
