@@ -46,6 +46,10 @@
 .details-section {
 }
 
+.focused {
+  box-shadow: 0 0 2px 2px red;
+}
+
 .pricing {
   margin: 24px 0;
   display: flex;
@@ -73,6 +77,7 @@
   display: flex;
   gap: 8px;
 }
+
 .sizeButton {
   height: 48px;
   width: 48px;

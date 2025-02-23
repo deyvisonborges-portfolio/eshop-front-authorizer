@@ -1,4 +1,4 @@
-import { ProductDetailsPage } from "@/modules/store/features/products/pages/details.page";
+import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page";
 
 type RouteProps = {
   params: {

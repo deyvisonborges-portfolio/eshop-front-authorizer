@@ -1,9 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./details.module.css";
 import { Button, Heading, Text } from "@/@lib-ui";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useState } from "react";
+import { Blur } from "@/@lib-ui/src/core-components/blur";
+
+type Attribute = "size" | "color";
+
 export function ProductDetailsPage() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const size = searchParams.get("size") || "";
+  const color = searchParams.get("color") || "";
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      if (value === size || value === color) return;
+
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+      router.push(`${pathname}?${params.toString()}`, undefined);
+    },
+    [searchParams, router, pathname]
+  );
+
   return (
     <div className={styles.container}>
+      {/* <Blur /> */}
       <div className={styles.imageSection}>
         <div className={styles.mainImage}>
           <Image
@@ -49,9 +76,16 @@ export function ProductDetailsPage() {
               Tamanhos disponíveis
             </Text>
             <div className={styles.sizeButtons}>
-              {["P", "M", "G", "GG"].map((size) => (
-                <Button key={size} className={styles.sizeButton}>
-                  {size}
+              {["P", "M", "G", "GG"].map((_size) => (
+                <Button
+                  key={_size}
+                  className={[
+                    styles.sizeButton,
+                    _size === size ? styles.focused : "",
+                  ].join(" ")}
+                  onClick={() => createQueryString("size", _size)}
+                >
+                  {_size}
                 </Button>
               ))}
             </div>
@@ -62,9 +96,16 @@ export function ProductDetailsPage() {
               Cores disponíveis
             </Text>
             <div className={styles.colorButtons}>
-              {["Preto", "Branco", "Azul"].map((color) => (
-                <Button key={color} className={styles.colorButton}>
-                  {color}
+              {["Preto", "Branco", "Azul"].map((_color) => (
+                <Button
+                  key={_color}
+                  className={[
+                    styles.colorButton,
+                    _color === color ? styles.focused : "",
+                  ].join(" ")}
+                  onClick={() => createQueryString("color", _color)}
+                >
+                  {_color}
                 </Button>
               ))}
             </div>
