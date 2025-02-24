@@ -11,7 +11,11 @@ type ProductCardProps = {
   has?: { button?: boolean };
 };
 
-export function ProductCard({ isLoaded = true, data, has }: ProductCardProps) {
+export function ProductCard({
+  data,
+  isLoaded = true,
+  has = {},
+}: ProductCardProps) {
   const router = useRouter();
 
   const handleSelectProduct = useCallback((productId: string) => {

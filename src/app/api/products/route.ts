@@ -30,7 +30,7 @@ export async function GET(req: Request, res: Response) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
   const products = [
     {
-      id: crypto.randomUUID(),
+      id: "123123",
       // sku: gerarSKU("Camiseta", "Azul", "P", "Feminina"),
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
       name: "Bingo Original Style Chilli Chips",
@@ -44,7 +44,7 @@ export async function GET(req: Request, res: Response) {
       colors: ["Preto", "Branco"],
     },
     {
-      id: crypto.randomUUID(),
+      id: "234234",
       // sku: gerarSKU("Camiseta", "Azul", "P", "Feminina"),
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
       name: "Bingo Original Style Chilli Chips",
@@ -63,6 +63,12 @@ export async function GET(req: Request, res: Response) {
   const id = searchParams.get("id");
   const size = searchParams.get("size");
   const color = searchParams.get("color");
+
+  if (id) {
+    return NextResponse.json({
+      data: products.filter((p) => p.id === id)[0],
+    });
+  }
 
   if (!id || (!size && !color)) {
     return NextResponse.json({

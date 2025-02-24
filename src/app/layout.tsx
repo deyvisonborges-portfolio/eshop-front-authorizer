@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/@lib-tokens/dist/index.min.css";
 import { ThemeProvider } from "@/styles/theme.provider";
+import { LoadingProvider } from "@/providers/loading.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LoadingProvider>{children}</LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
