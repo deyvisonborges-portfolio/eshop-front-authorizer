@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./details.module.css";
 import { Button, Heading, Text } from "@/@lib-ui";
 import { ProductUIModel } from "../../product.ui-model";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
 
@@ -25,27 +25,22 @@ export function ProductDetailsPage({
   const size = searchParams.get("size") || "";
   const color = searchParams.get("color") || "";
 
-  const updateQuery = async (key: "size" | "color", value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
-    router.refresh();
-  };
+  const updateQuery = useCallback(
+    async (key: "size" | "color", value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(key, value);
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
-  useEffect(() => {
-    const fetchProduct = async () => {
       startLoading();
       try {
         const apiUrl =
           process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
-        const sizeParam = size ? `&size=${size}` : "";
-        const colorParam = color ? `&color=${color}` : "";
+        const sizeParam = key === "size" ? `&size=${value}` : "";
+        const colorParam = key === "color" ? `&color=${value}` : "";
 
         const res = await fetch(
-          `${apiUrl}/products?id=${product.id}${sizeParam}${colorParam}`,
-          {
-            cache: "force-cache",
-          }
+          `${apiUrl}/products?id=${serverProduct.id}${sizeParam}${colorParam}`,
+          { cache: "force-cache" }
         );
 
         if (!res.ok) throw new Error("Erro ao buscar produto");
@@ -57,16 +52,15 @@ export function ProductDetailsPage({
       } finally {
         stopLoading();
       }
-    };
-
-    fetchProduct();
-  }, [product.id, size, color]);
+    },
+    [searchParams, pathname, serverProduct.id]
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.imageSection}>
         <Image
-          src={"/placeholder.svg"}
+          src={product?.images?.[0] || "/placeholder.svg"}
           alt="Product image"
           width={600}
           height={600}

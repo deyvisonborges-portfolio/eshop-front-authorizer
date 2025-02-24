@@ -34,6 +34,8 @@ export async function generateMetadata({
   };
 }
 
+// Carregamento inicial (/product/234234) → Server Component (busca feita no servidor, SSR).
+// Alteração de variações (size=color&color=blue) → Client Component (estado do React manipula a UI no cliente).
 export default async function ProductDetailsAppPage({
   params,
 }: ProductDetailsAppPageRouteProps) {
