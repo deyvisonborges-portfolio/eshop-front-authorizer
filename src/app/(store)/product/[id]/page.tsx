@@ -1,13 +1,17 @@
-import { use } from "react";
 import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page";
+import { use } from "react";
 
 export type ProductDetailsAppPageRouteProps = {
-  params: Promise<{ id?: string }>;
+  params: Promise<{ id?: string | undefined }>;
+  searchParams: Promise<{
+    color?: string | undefined;
+    size?: string | undefined;
+  }>;
 };
 
-export default function ProductDetailsAppPage({
+export default async function ProductDetailsAppPage({
   params,
+  searchParams,
 }: ProductDetailsAppPageRouteProps) {
-  const resolvedParams = use(params);
-  return <ProductDetailsPage params={resolvedParams} />;
+  return <ProductDetailsPage params={params} searchParams={searchParams} />;
 }

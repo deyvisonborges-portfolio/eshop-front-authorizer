@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📌 Módulo: store
 
-## Getting Started
+A store parece ser responsável pela exibição de produtos e possivelmente pelo gerenciamento do catálogo. Outras features relevantes para um e-commerce poderiam ser:
 
-First, run the development server:
+📂 store/features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+📂 cart/ → Carrinho de compras
+📂 components/ → Botão "Adicionar ao Carrinho", Resumo do Carrinho
+📂 pages/ → Página do Carrinho (cart.tsx)
+📂 checkout/ → Processo de compra
+📂 components/ → Resumo do Pedido, Formulário de Pagamento
+📂 pages/ → Página de Checkout (checkout.tsx)
+📂 orders/ → Pedidos do usuário
+📂 components/ → Lista de Pedidos, Detalhes do Pedido
+📂 pages/ → Página de Pedidos (orders.tsx)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📌 Módulo: user (Gerenciamento de usuários e perfis)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para separar funcionalidades relacionadas ao usuário (perfil, histórico de compras, endereços, etc.), pode ser interessante criar um módulo específico:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+📂 modules/user/
 
-## Learn More
+📂 features/
+📂 profile/ → Perfil do usuário
+📂 addresses/ → Endereços salvos
+📂 wishlist/ → Lista de desejos
+📌 Módulo: admin (Se houver um painel administrativo)
 
-To learn more about Next.js, take a look at the following resources:
+Caso o e-commerce tenha um dashboard para gestão de produtos e pedidos, esse módulo pode ser útil:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📂 modules/admin/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+📂 features/
+📂 dashboard/ → Painel administrativo
+📂 products-management/ → CRUD de produtos
+📂 orders-management/ → Gestão de pedidos
 
-## Deploy on Vercel
+3️⃣ Quando "Products" deveria ser um Módulo Independente?
+Se products lida com dados, regras de negócio e integrações externas, ele deveria ser um módulo próprio, separado da store. Algo como:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📂 modules/products/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+📂 features/
+📂 catalog/ → Gerenciamento do catálogo de produtos
+📂 reviews/ → Avaliações de produtos
+📂 service/
+🟦 productApi.ts → Chamadas de API para obter produtos
+🟦 types.ts → Tipagem de Product, Category
+Dessa forma, products não estaria acoplado à exibição (store), permitindo mais reuso e escalabilidade.

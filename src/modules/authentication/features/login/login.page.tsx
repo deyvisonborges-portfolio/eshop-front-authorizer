@@ -88,7 +88,7 @@ export function LoginPage() {
         message: result?.error || "Unknown error",
       });
     }
-    setTimeout(redirect("/otp"));
+    setTimeout(redirect("/auth/otp"));
   };
 
   return (

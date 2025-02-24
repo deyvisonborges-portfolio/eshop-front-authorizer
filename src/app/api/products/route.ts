@@ -1,37 +1,11 @@
 import { NextResponse } from "next/server";
 
-// function gerarSKU(
-//   categoria: string,
-//   cor: string,
-//   tamanho: string,
-//   modelo: string
-// ): string {
-//   const categoriaAbreviada: string = categoria.slice(0, 3).toUpperCase();
-//   const corAbreviada: string = cor.slice(0, 3).toUpperCase();
-//   const tamanhoAbreviado: string = tamanho.charAt(0).toUpperCase();
-//   const modeloAbreviado: string = modelo.slice(0, 3).toUpperCase();
-
-//   let numeroAleatorio: string = "";
-//   for (let i = 0; i < 4; i++) {
-//     numeroAleatorio += Math.floor(Math.random() * 10).toString();
-//   }
-
-//   const sku: string = `
-//     ${categoriaAbreviada}-
-//     ${corAbreviada}-
-//     ${tamanhoAbreviado}-
-//     ${modeloAbreviado}-
-//     ${numeroAleatorio}
-//   `;
-//   return sku;
-// }
-
-export async function GET(req: Request, res: Response) {
+export async function GET(req: Request) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
+
   const products = [
     {
       id: "123123",
-      // sku: gerarSKU("Camiseta", "Azul", "P", "Feminina"),
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
       name: "Bingo Original Style Chilli Chips",
       price: 33.0,
@@ -45,7 +19,6 @@ export async function GET(req: Request, res: Response) {
     },
     {
       id: "234234",
-      // sku: gerarSKU("Camiseta", "Azul", "P", "Feminina"),
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
       name: "Bingo Original Style Chilli Chips",
       price: 33.0,
@@ -64,31 +37,23 @@ export async function GET(req: Request, res: Response) {
   const size = searchParams.get("size");
   const color = searchParams.get("color");
 
+  // Se um ID for passado, retorna apenas o produto correspondente
   if (id) {
-    return NextResponse.json({
-      data: products.filter((p) => p.id === id)[0],
-    });
+    const product = products.find((p) => p.id === id);
+    return NextResponse.json({ data: product ?? null });
   }
 
-  if (!id || (!size && !color)) {
-    return NextResponse.json({
-      data: products,
-    });
+  // Se nenhum filtro for passado, retorna todos os produtos
+  if (!size && !color) {
+    return NextResponse.json({ data: products });
   }
 
+  // Filtragem por cor e tamanho, se fornecidos
   const filteredProducts = products.filter((product) => {
-    if (
-      (size &&
-        product.sizes.includes(size) &&
-        color &&
-        product.colors.includes(color)) ||
-      product.id === id
-    ) {
-      return product;
-    }
+    const matchesSize = size ? product.sizes.includes(size) : true;
+    const matchesColor = color ? product.colors.includes(color) : true;
+    return matchesSize && matchesColor;
   });
 
-  return NextResponse.json({
-    data: filteredProducts,
-  });
+  return NextResponse.json({ data: filteredProducts });
 }
