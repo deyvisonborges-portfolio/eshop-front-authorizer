@@ -1,47 +1,66 @@
-// app/product/[id]/page.tsx
+"use client";
+
 import Image from "next/image";
 import styles from "./details.module.css";
 import { Button, Heading, Text } from "@/@lib-ui";
 import { ProductUIModel } from "../../product.ui-model";
-import { Suspense } from "react";
-import { ProductDetailsSkeleton } from "./skeleton";
-import { VariantSelector } from "../../components/variant-select";
-import { revalidatePath } from "next/cache";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useLoading } from "@/providers/loading.provider";
 
-// const getProduct = async (id: string) => {
-//   const res = await (
-//     await fetch(`http://localhost:3000/api/products?id=${id}`, {
-//       cache: "force-cache",
-//     })
-//   ).json();
-//   return res.data;
-// };
+type ProductDetailsPageProps = {
+  product: ProductUIModel;
+};
 
-export async function ProductDetailsPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ id?: string | undefined }>;
-  searchParams: Promise<{
-    size?: string | undefined;
-    color?: string | undefined;
-  }>;
-}) {
-  const id = (await params).id;
-  const size = (await searchParams).size;
-  const color = (await searchParams).color;
+export function ProductDetailsPage({
+  product: serverProduct,
+}: ProductDetailsPageProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const apiUrl = process.env.API_URL || "http://localhost:3000/api"; // Fallback para ambiente local
-  const sizeParam = size ? `&size=${size}` : "";
-  const colorParam = color ? `&color=${color}` : "";
+  const { startLoading, stopLoading } = useLoading();
 
-  const res = await fetch(
-    `${apiUrl}/products?id=${id}${sizeParam}${colorParam}`,
-    {
-      cache: "no-store",
-    }
-  );
-  const product: ProductUIModel = (await res.json()).data;
+  const [product, setProduct] = useState(serverProduct);
+  const size = searchParams.get("size") || "";
+  const color = searchParams.get("color") || "";
+
+  const updateQuery = async (key: "size" | "color", value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value);
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    router.refresh();
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      startLoading();
+      try {
+        const apiUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+        const sizeParam = size ? `&size=${size}` : "";
+        const colorParam = color ? `&color=${color}` : "";
+
+        const res = await fetch(
+          `${apiUrl}/products?id=${product.id}${sizeParam}${colorParam}`,
+          {
+            cache: "force-cache",
+          }
+        );
+
+        if (!res.ok) throw new Error("Erro ao buscar produto");
+
+        const data = await res.json();
+        setProduct(data.data);
+      } catch (error) {
+        console.error("Erro ao buscar produto:", error);
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchProduct();
+  }, [product.id, size, color]);
 
   return (
     <div className={styles.container}>
@@ -69,7 +88,7 @@ export async function ProductDetailsPage({
           </Text>
         </div>
 
-        {/* <div className={styles.options}>
+        <div className={styles.options}>
           <div className={styles.optionGroup}>
             <Text size="large" weight="bold">
               Tamanhos disponíveis
@@ -78,11 +97,8 @@ export async function ProductDetailsPage({
               {product?.sizes?.map((_size) => (
                 <Button
                   key={_size}
-                  className={[
-                    styles.sizeButton,
-                    _size === size ? styles.focused : "",
-                  ].join(" ")}
-                  // onClick={() => createQueryString("size", _size)}
+                  className={_size === size ? styles.focused : ""}
+                  onClick={() => updateQuery("size", _size)}
                 >
                   {_size}
                 </Button>
@@ -98,21 +114,16 @@ export async function ProductDetailsPage({
               {product?.colors?.map((_color) => (
                 <Button
                   key={_color}
-                  className={[
-                    styles.colorButton,
-                    _color === color ? styles.focused : "",
-                  ].join(" ")}
-                  // onClick={() => createQueryString("color", _color)}
+                  className={_color === color ? styles.focused : ""}
+                  onClick={() => updateQuery("color", _color)}
                 >
                   {_color}
                 </Button>
               ))}
             </div>
           </div>
-        </div> */}
-        <Suspense fallback={<p>Loading...</p>}>
-          <VariantSelector initialData={product} productId={product.id} />
-        </Suspense>
+        </div>
+
         <div className={styles.actions}>
           <Button className={styles.addToCart}>Adicionar ao carrinho</Button>
         </div>

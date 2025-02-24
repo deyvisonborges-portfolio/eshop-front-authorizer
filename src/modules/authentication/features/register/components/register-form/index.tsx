@@ -5,8 +5,8 @@ import styles from "./register-form.module.css";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MongoUserService } from "@/app/modules/authentication/service/mongo/mongo-user.service";
 import { CreateUserType } from "@/app/api/mongo/users/types";
+import { MongoUserService } from "@/modules/authentication/service/mongo/mongo-user.service";
 
 export const registerFormZodSchema = z
   .object({
