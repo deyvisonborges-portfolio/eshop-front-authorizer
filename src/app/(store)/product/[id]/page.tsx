@@ -1,7 +1,6 @@
 import { productsService } from "@/modules/store/features/products/api/products.service";
 import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page";
 import { ProductDetailsSkeleton } from "@/modules/store/features/products/pages/details/skeleton";
-import { Metadata } from "next";
 import { Suspense } from "react";
 
 type PageProps = {
