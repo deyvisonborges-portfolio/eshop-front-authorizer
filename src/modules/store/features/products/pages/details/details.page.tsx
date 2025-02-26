@@ -7,6 +7,7 @@ import { ProductUIModel } from "../../product.ui-model";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
+import { productsService } from "../../api/products.service";
 
 type ProductDetailsPageProps = {
   product: ProductUIModel;
@@ -33,32 +34,36 @@ export function ProductDetailsPage({
 
       startLoading();
       try {
-        const apiUrl =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
-        const sizeParam = key === "size" ? `&size=${value}` : "";
-        const colorParam = key === "color" ? `&color=${value}` : "";
+        // Criar um objeto de queryParams e garantir que não adicionamos chaves vazias
+        const queryParams: Record<string, string> = {};
 
-        const res = await fetch(
-          `${apiUrl}/products?id=${serverProduct.id}${sizeParam}${colorParam}`,
+        if (key === "size") {
+          queryParams.size = value;
+          if (color) queryParams.color = color; // Mantém a cor existente se houver
+        } else if (key === "color") {
+          queryParams.color = value;
+          if (size) queryParams.size = size; // Mantém o tamanho existente se houver
+        }
+
+        const result = await productsService.getProductByIdAndParams(
+          serverProduct.id,
+          queryParams,
           { cache: "force-cache" }
         );
 
-        if (!res.ok) throw new Error("Erro ao buscar produto");
-
-        const data = await res.json();
-        setProduct(data.data);
+        setProduct(result);
       } catch (error) {
         console.error("Erro ao buscar produto:", error);
       } finally {
         stopLoading();
       }
     },
-    [searchParams, pathname, serverProduct.id]
+    [searchParams, pathname, serverProduct.id, size, color]
   );
 
   return (
     <div className={styles.container}>
-      <div className={styles.imageSection}>
+      {/* <div className={styles.imageSection}>
         <Image
           src={product?.images?.[0] || "/placeholder.svg"}
           alt="Product image"
@@ -66,7 +71,7 @@ export function ProductDetailsPage({
           height={600}
           className={styles.image}
         />
-      </div>
+      </div> */}
 
       <div className={styles.details}>
         <Heading as="h1" weight="bold" size="small" className={styles.title}>

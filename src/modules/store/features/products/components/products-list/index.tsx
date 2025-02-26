@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ProductUIModel } from "../../product.ui-model";
 import { ProductCard } from "../product-card";
 import { useLoading } from "@/providers/loading.provider";
+import { productsService } from "../../api/products.service";
 
 export function ProductsList() {
   const [products, setProducts] = useState<ProductUIModel[]>([]);
@@ -14,8 +15,7 @@ export function ProductsList() {
     const fetchProducts = async () => {
       startLoading();
       try {
-        const res = await (await fetch("/api/products")).json();
-        console.log(res);
+        const res = await productsService.getAllProducts();
         setProducts(res.data);
       } catch (error) {
       } finally {

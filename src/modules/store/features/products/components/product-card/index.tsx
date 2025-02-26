@@ -33,7 +33,7 @@ export function ProductCard({
       </div>
 
       <div className={styles.info}>
-        <h3 className={styles.title}>{data.description}</h3>
+        <h3 className={styles.title}>{data.name}</h3>
         <div className={styles.pricing}>
           <div className={styles.price}>
             <span className={styles.originalPrice}>

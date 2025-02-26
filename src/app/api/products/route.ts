@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  await new Promise((resolve) => setTimeout(resolve, 2500));
 
   const products = [
     {

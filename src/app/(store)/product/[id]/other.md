@@ -5,7 +5,7 @@ import { ProductUIModel } from "@/modules/store/features/products/product.ui-mod
 import { Suspense } from "react";
 
 type PageProps = {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 };
 
 async function getProduct(id: string): Promise<ProductUIModel> {
@@ -14,10 +14,15 @@ async function getProduct(id: string): Promise<ProductUIModel> {
   });
 }
 
+//  async function generateStaticParams() {
+//   const products = await productsService.getAllProducts(); // Pegue uma lista de IDs
+//   return products.map((product) => ({ id: product.id }));
+// }
+
 // Sempre isole chamadas assíncronas em um componente filho para permitir Suspense
 // um Server Component async espera todos os dados carregarem antes de renderizar, então o Skeleton nunca aparece.
 async function ProductDetails({ params }: PageProps) {
-  const id = (await params).id;
+  const id = params.id;
   const product = await getProduct(id);
   return <ProductDetailsPage product={product} />;
 }

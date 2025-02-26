@@ -1,3 +1,3 @@
-import { ProductModel } from "@/app/api/products/_model";
+import { ProductAPIModel } from "./api/product.api-model";
 
-export type ProductUIModel = ProductModel;
+export type ProductUIModel = ProductAPIModel;
