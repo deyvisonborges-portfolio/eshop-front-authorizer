@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./details.module.css";
 import { Button, Heading, Text } from "@/@lib-ui";
 import { ProductUIModel } from "../../product.ui-model";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
 import { productsService } from "../../api/products.service";
@@ -31,6 +30,7 @@ export function ProductDetailsPage({
       const params = new URLSearchParams(searchParams.toString());
       params.set(key, value);
       router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      // router.refresh();
 
       startLoading();
       try {
@@ -47,8 +47,7 @@ export function ProductDetailsPage({
 
         const result = await productsService.getProductByIdAndParams(
           serverProduct.id,
-          queryParams,
-          { cache: "force-cache" }
+          queryParams
         );
 
         setProduct(result);

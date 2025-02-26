@@ -18,7 +18,9 @@ export function Header() {
 
       <div className={styles["header-right"]}>
         <Input name="search" placeholder="Busque o que procura" />
-        <CartIconBlack24 />
+        <Link href="/cart" prefetch={false}>
+          <CartIconBlack24 />
+        </Link>
         <Link href="/auth/login">
           <UserIconBlack24 />
         </Link>

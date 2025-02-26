@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  await new Promise((resolve) => setTimeout(resolve, 2500));
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 
   const products = [
     {
       id: "123123",
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
-      name: "Bingo Original Style Chilli Chips",
+      name: "Bingo 2 Original Style Chilli Chips",
       price: 33.0,
       originalPrice: 50.0,
       discount: 34,
