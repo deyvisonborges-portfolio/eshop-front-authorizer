@@ -8,65 +8,55 @@ type PageProps = {
   searchParams?: Promise<{ size?: string; color?: string }>;
 };
 
-// O generateMetadata bloqueia toda a renderizacao
-// https://github.com/vercel/next.js/discussions/62888
-// export async function generateMetadata({
-//   params,
-//   searchParams,
-// }: PageProps): Promise<Metadata> {
-//   const id = (await params).id;
-//   const filters = searchParams ? await searchParams : {};
-//   const [product] = await Promise.all([
-//     productsService.getProductByIdAndParams(id, filters),
-//   ]);
+async function ProductDetails({ params, searchParams }: PageProps) {
+  const { id } = await params;
+  const filters = searchParams ? await searchParams : {};
 
-//   return {
-//     title: product.name,
-//     description: product.description,
-//     openGraph: {
-//       images: product.images.map((p: any) => ({
-//         url: p,
-//         width: 200,
-//         height: 200,
-//         alt: product.description,
-//       })),
-//     },
-//   };
-// }
+  const product = await productsService.getProductByIdAndParams(id, filters, {
+    cache: "default",
+    next: { revalidate: 3 },
+  });
+  return <ProductDetailsPage product={product} />;
+}
 
-// async function ProductDetails({ params, searchParams }: PageProps) {
-//   const id = (await params).id;
-//   const filters = searchParams ? await searchParams : {};
-
-//   const product = await productsService.getProductByIdAndParams(id, filters);
-//   return <ProductDetailsPage product={product} />;
-// }
-
-//  Essa função não é async, pois não faz nenhuma operação assíncrona diretamente.
-// Ela não faz fetch de dados diretamente.
-// O Next.js não precisa esperar nada antes de começar a renderizar.
-// O <Suspense> gerencia o carregamento assíncrono de ProductDetails.
-
-// Se ProductDetailsAppPage fosse async, o Next.js só começaria a renderizar a página inteira depois de buscar os dados, o que quebraria o efeito de streaming do Suspense. 🚀
-// Isso seria o caso do generateMetadata, que trava a renderização
-
-// Interessante observar
-// https://dev.to/peterlidee/synchronous-and-asynchronous-searchparams-in-next-15-3c7a
+/**
+ * @description
+ * Essa função não é async, pois não:
+ * - Faz nenhuma operação assíncrona diretamente;
+ * - Ela não faz fetch de dados diretamente;
+ * - O efeito de Streaming do Next.js funciona corretamente;
+ * - O Next.js não precisa esperar nada antes de começar a renderizar.
+ *
+ * O Suspense permite que o resto da página seja renderizado enquanto ProductDetails busca os dados.
+ * O ProductDetailsSkeleton é exibido até os dados estarem prontos.
+ *
+ * Se ProductDetailsAppPage fosse async, o Next.js só começaria a renderizar a página
+ * inteira depois de buscar os dados, o que quebraria o efeito de streaming do Suspense. 🚀
+ *
+ * Se renderizarmos de forma assincrona, funciona, porem:
+ * - O Next.js vai esperar a resolução da função antes de renderizar a página.
+ * - Toda a renderização da página será bloqueada até que a Promise resolva. Isso quebraria o Streaming do Next.js.
+ * Obs.: quando usamos o generateMetadata por exemplo, que é assincrono, ele bloqueia toda a renderizacao
+ *
+ * // Interessante observar
+ * @link https://dev.to/peterlidee/synchronous-and-asynchronous-searchparams-in-next-15-3c7a
+ */
 export default async function ProductDetailsAppPage({
   params,
   searchParams,
 }: PageProps) {
-  const id = (await params).id;
-  const filters = searchParams ? await searchParams : {};
-  const product = await productsService.getProductByIdAndParams(id, filters, {
-    cache: "default",
-    next: { revalidate: 5 },
-  });
-
   return (
-    // O Suspense permite que o Next.js carregue partes da página enquanto espera os dados, exibindo ProductDetailsSkeleton no lugar.
+    /**
+     * @description
+     * - O Suspense permite que o Next.js carregue partes da página enquanto espera os dados, exibindo ProductDetailsSkeleton no lugar.
+     * - Carregamento parcial dentro da mesma página
+     * - Nao permite carregamento global (antes da página ser visível)
+     * - Carregamento de uma seção específica
+     * - Nao faz o carregamento de uma nova página
+     * - Como so tenho esse caso em especifico, nao vou me preocupar em criar o loading.tsx
+     */
     <Suspense fallback={<ProductDetailsSkeleton />}>
-      <ProductDetailsPage product={product} />;
+      <ProductDetails params={params} searchParams={searchParams} />
     </Suspense>
   );
 }

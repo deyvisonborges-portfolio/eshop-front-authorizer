@@ -47,3 +47,7 @@ Se products lida com dados, regras de negócio e integrações externas, ele dev
 🟦 productApi.ts → Chamadas de API para obter produtos
 🟦 types.ts → Tipagem de Product, Category
 Dessa forma, products não estaria acoplado à exibição (store), permitindo mais reuso e escalabilidade.
+
+<!-- Importantes -->
+
+- https://youtu.be/2RDuyw-NdDU

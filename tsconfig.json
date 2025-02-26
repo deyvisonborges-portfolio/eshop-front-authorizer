@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "api/index.js"  ],
+, "api/index.js", "src/app/(store)/product/[id]/loading.doc"  ],
   "exclude": [
     "node_modules"
   ]

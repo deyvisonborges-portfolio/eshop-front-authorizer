@@ -3,12 +3,10 @@
 import styles from "./details.module.css";
 import { Button, Heading, Text } from "@/@lib-ui";
 import { ProductUIModel } from "../../product.ui-model";
-import { useCallback, useState, useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
-import { productsService } from "../../api/products.service";
 import Image from "next/image";
-import { ProductDetailsSkeleton } from "./skeleton";
 
 type ProductDetailsPageProps = {
   product: ProductUIModel;
@@ -19,6 +17,7 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const { startLoading, stopLoading } = useLoading();
   const [isPending, startTransition] = useTransition();
 
   const size = searchParams.get("size") || "";
@@ -33,9 +32,15 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
     );
   };
 
-  return isPending ? (
-    <ProductDetailsSkeleton />
-  ) : (
+  useEffect(() => {
+    if (isPending) {
+      startLoading();
+      return;
+    }
+    stopLoading();
+  }, [isPending]);
+
+  return (
     <div className={styles.container}>
       <div className={styles.imageSection}>
         <Image
