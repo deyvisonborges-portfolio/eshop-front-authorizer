@@ -7,6 +7,7 @@ import { useEffect, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
 import Image from "next/image";
+import { useCart } from "../../../cart/use-cart";
 
 type ProductDetailsPageProps = {
   product: ProductUIModel;
@@ -16,6 +17,8 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const { handleAddItem } = useCart();
 
   const { startLoading, stopLoading } = useLoading();
   const [isPending, startTransition] = useTransition();
@@ -103,7 +106,12 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
         </div>
 
         <div className={styles.actions}>
-          <Button className={styles.addToCart}>Adicionar ao carrinho</Button>
+          <Button
+            className={styles.addToCart}
+            onClick={() => handleAddItem({ ...product })}
+          >
+            Adicionar ao carrinho
+          </Button>
         </div>
 
         <div className={styles.description}>

@@ -13,7 +13,6 @@ https://zagjs.com/components/react/accordion
 https://next.skeleton.dev/docs/get-started/introduction
 https://catalyst.tailwindui.com/docs
 
-
 artigos importantes:
 https://sancho.dev/blog/tailwind-and-design-systems
 https://thoughtbot.com/blog/tailwind-versus-bem

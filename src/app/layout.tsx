@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/@lib-tokens/dist/index.min.css";
 import { ThemeProvider } from "@/styles/theme.provider";
 import { LoadingProvider } from "@/providers/loading.provider";
+import StoreProvider from "@/config/store/store-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,9 +36,11 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider>
-          <LoadingProvider>{children}</LoadingProvider>
-        </ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider>
+            <LoadingProvider>{children}</LoadingProvider>
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

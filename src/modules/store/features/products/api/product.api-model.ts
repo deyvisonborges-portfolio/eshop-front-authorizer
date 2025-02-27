@@ -10,4 +10,5 @@ export type ProductAPIModel = {
   categories: string[];
   sizes: string[];
   colors: string[];
+  quantity: number;
 };

@@ -1,23 +1,10 @@
-import Image from "next/image";
+"use client";
+
 import styles from "./cart.module.css";
+import { useCart } from "../use-cart";
 
 export function CartPage() {
-  const cartItems = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 19.99,
-      quantity: 2,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 29.99,
-      quantity: 1,
-      image: "/placeholder.svg",
-    },
-  ];
+  const { cartItems } = useCart();
 
   const calculateTotal = () => {
     return cartItems
@@ -42,13 +29,13 @@ export function CartPage() {
           {cartItems.map((item) => (
             <tr key={item.id}>
               <td className={styles.productCell}>
-                <Image
+                {/* <Image
                   src={item.image || "/placeholder.svg"}
                   alt={item.name}
                   width={50}
                   height={50}
                   className={styles.productImage}
-                />
+                /> */}
                 <span>{item.name}</span>
               </td>
               <td>${item.price.toFixed(2)}</td>
