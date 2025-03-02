@@ -4,6 +4,8 @@ import "@/@lib-tokens/dist/index.min.css";
 import { ThemeProvider } from "@/styles/theme.provider";
 import { LoadingProvider } from "@/providers/loading.provider";
 import StoreProvider from "@/config/store/store-provider";
+import { SnackbarProvider } from "notistack";
+import { NotistackProvider } from "@/providers/notistack.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +40,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <StoreProvider>
           <ThemeProvider>
-            <LoadingProvider>{children}</LoadingProvider>
+            <NotistackProvider>
+              <LoadingProvider>{children}</LoadingProvider>
+            </NotistackProvider>
           </ThemeProvider>
         </StoreProvider>
       </body>

@@ -1,3 +1,4 @@
+// VIDE: https://www.syncfusion.com/blogs/post/axios-vs-fetch-choose-right-http-client?ref=dailydev
 export class FetchClient {
   private baseUrl: string;
   private prefix: string;

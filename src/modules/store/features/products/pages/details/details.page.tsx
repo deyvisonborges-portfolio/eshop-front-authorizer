@@ -8,6 +8,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLoading } from "@/providers/loading.provider";
 import Image from "next/image";
 import { useCart } from "../../../cart/use-cart";
+import { useSnackbar } from "notistack";
 
 type ProductDetailsPageProps = {
   product: ProductUIModel;
@@ -17,6 +18,8 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const { handleAddItem } = useCart();
 
@@ -33,6 +36,11 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
     startTransition(() =>
       router.push(`${pathname}?${params.toString()}`, { scroll: false })
     );
+  };
+
+  const handleClickAddToCart = () => {
+    handleAddItem({ ...product });
+    enqueueSnackbar("Produto adicionado ao carrinho", { variant: "success" });
   };
 
   useEffect(() => {
@@ -106,10 +114,7 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
         </div>
 
         <div className={styles.actions}>
-          <Button
-            className={styles.addToCart}
-            onClick={() => handleAddItem({ ...product })}
-          >
+          <Button className={styles.addToCart} onClick={handleClickAddToCart}>
             Adicionar ao carrinho
           </Button>
         </div>
