@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  background-color: var(--color-neutral-grey-10);
+  color: var(--color-gray-1);
+  padding: 12px;
+  border-radius: 50%;
+  position: absolute;
+  font-size: var(--font-size-10);
+  top: -12px;
+  left: 12px;
+  width: 24px;
+  height: 24px;
+}

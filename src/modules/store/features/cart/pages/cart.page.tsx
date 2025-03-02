@@ -37,6 +37,8 @@ export function CartPage() {
                   className={styles.productImage}
                 /> */}
                 <span>{item.name}</span>
+                <span>Tamanho: {item.size}</span>
+                <span>Cor: {item.color}</span>
               </td>
               <td>${item.price.toFixed(2)}</td>
               <td>

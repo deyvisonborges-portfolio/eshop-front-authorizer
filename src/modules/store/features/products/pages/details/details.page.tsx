@@ -39,8 +39,16 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   };
 
   const handleClickAddToCart = () => {
-    handleAddItem({ ...product });
-    enqueueSnackbar("Produto adicionado ao carrinho", { variant: "success" });
+    if (!size && !color) {
+      enqueueSnackbar("Selecione as opções desejadas", {
+        variant: "error",
+      });
+      return;
+    }
+    handleAddItem({ ...product, size, color });
+    enqueueSnackbar("Produto adicionado ao carrinho", {
+      variant: "success",
+    });
   };
 
   useEffect(() => {
