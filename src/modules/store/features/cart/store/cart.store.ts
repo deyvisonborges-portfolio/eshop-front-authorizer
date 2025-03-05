@@ -4,7 +4,7 @@ import { ProductAPIModel } from "../../products/api/product.api-model";
 export type CartState = Pick<
   ProductAPIModel,
   "id" | "name" | "price" | "originalPrice" | "stock" | "quantity"
-> & { size: string; color: string };
+> & { size: string; color: string; miniThumbUrl: string };
 
 const initialState: { items: CartState[] } = {
   items: [],

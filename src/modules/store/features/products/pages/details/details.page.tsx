@@ -46,7 +46,7 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
       });
       return;
     }
-    handleAddItem({ ...product, size, color });
+    handleAddItem({ ...product, size, color, miniThumbUrl: product.images[0] });
     enqueueSnackbar("Produto adicionado ao carrinho", {
       variant: "success",
     });
@@ -63,8 +63,8 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   return (
     <div className={styles.container}>
       <div className={styles.imageSection}>
-        <Image
-          src={product?.images?.[0] || "/placeholder.svg"}
+        <img
+          src={product.images[0]}
           alt="Product image"
           width={600}
           height={600}

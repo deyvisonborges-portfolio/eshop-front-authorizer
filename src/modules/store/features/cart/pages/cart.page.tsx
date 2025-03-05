@@ -4,7 +4,7 @@ import styles from "./cart.module.css";
 import { useCart } from "../use-cart";
 
 export function CartPage() {
-  const { cartItems } = useCart();
+  const { cartItems, handleRemoveItem } = useCart();
 
   const calculateTotal = () => {
     return cartItems
@@ -29,13 +29,13 @@ export function CartPage() {
           {cartItems.map((item) => (
             <tr key={item.id}>
               <td className={styles.productCell}>
-                {/* <Image
-                  src={item.image || "/placeholder.svg"}
+                <img
+                  src={item.miniThumbUrl}
                   alt={item.name}
                   width={50}
                   height={50}
                   className={styles.productImage}
-                /> */}
+                />
                 <span>{item.name}</span>
                 <span>Tamanho: {item.size}</span>
                 <span>Cor: {item.color}</span>
@@ -51,7 +51,12 @@ export function CartPage() {
               </td>
               <td>${(item.price * item.quantity).toFixed(2)}</td>
               <td>
-                <button className={styles.removeButton}>Remove</button>
+                <button
+                  className={styles.removeButton}
+                  onClick={() => handleRemoveItem(Number(item.id))}
+                >
+                  Remove
+                </button>
               </td>
             </tr>
           ))}
