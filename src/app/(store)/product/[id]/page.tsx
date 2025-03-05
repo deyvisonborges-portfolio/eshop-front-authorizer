@@ -60,3 +60,19 @@ export default async function ProductDetailsAppPage({
     </Suspense>
   );
 }
+
+// // generateMetadata síncrono, usando dados passados pelo layout.
+// export async function generateMetadata({ params, searchParams }: PageProps) {
+//   const { id } = await params;
+//   const filters = (await searchParams) || {};
+
+//   const product = await productsService.getProductByIdAndParams(id, filters, {
+//     cache: "default",
+//     next: { revalidate: 3 },
+//   });
+
+//   return {
+//     title: product.name,
+//     description: product.description,
+//   };
+// }

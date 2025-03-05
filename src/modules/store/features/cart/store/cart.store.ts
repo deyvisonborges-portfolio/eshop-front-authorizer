@@ -16,11 +16,15 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<CartState>) => {
       const item = action.payload;
-      const existingItem = state.items.find((i) => i.id === item.id);
+      const existingItem = state.items.find(
+        (i) =>
+          i.id === item.id && i.size === item.size && i.color === item.color
+      );
+
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += 1; // Se já existe, aumenta a quantidade
       } else {
-        state.items.push({ ...item, quantity: 1 });
+        state.items.push({ ...item, quantity: 1 }); // Se não existe, adiciona ao carrinho
       }
     },
     removeItem: (state, action: PayloadAction<number>) => {

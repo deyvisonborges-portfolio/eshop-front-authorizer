@@ -1,3 +1,7 @@
+# Sobre a arquitetura desse projeto:
+
+- https://feature-sliced.design/
+
 📌 Módulo: store
 
 A store parece ser responsável pela exibição de produtos e possivelmente pelo gerenciamento do catálogo. Outras features relevantes para um e-commerce poderiam ser:

@@ -19,7 +19,7 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const { handleAddItem } = useCart();
 
@@ -39,7 +39,8 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
   };
 
   const handleClickAddToCart = () => {
-    if (!size && !color) {
+    if (!size || !color) {
+      console.log(size, color);
       enqueueSnackbar("Selecione as opções desejadas", {
         variant: "error",
       });
