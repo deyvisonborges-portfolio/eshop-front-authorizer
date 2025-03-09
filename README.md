@@ -1,5 +1,42 @@
 # Sobre a arquitetura desse projeto:
 
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+#### Links
+
+https://blog.meetbrackets.com/architectures-of-modern-front-end-applications-8859dfe6c12e
+
+### Module
+
+Um módulo é uma unidade independente do sistema que agrupa funcionalidades relacionadas a um domínio específico.
+
+Ele encapsula features que pertencem ao mesmo contexto.
+Pode conter APIs, componentes, estados, hooks, serviços e páginas específicas do domínio.
+Geralmente, segue o conceito de alta coesão e baixo acoplamento.
+
+✅ Exemplos de módulos no e-commerce:
+
+authentication → Gerencia login, registro, recuperação de senha.
+products → Gerencia catálogo, detalhes, recomendações, avaliações.
+checkout → Gerencia carrinho, pagamentos, finalização de pedido.
+
+### Feature
+
+Uma feature é uma funcionalidade específica dentro de um módulo.
+
+Representa um caso de uso do usuário dentro do domínio.
+Cada feature pode ter componentes, APIs, hooks e páginas próprias.
+Geralmente, não precisa conhecer outras features dentro do módulo.
+✅ Exemplos de features no módulo products:
+
+listing → Página com a listagem de produtos.
+details → Página de detalhes de um produto específico.
+reviews → Exibe e permite a avaliação de produtos.
+recommendations → Sugere produtos relacionados.
+
 - https://feature-sliced.design/
 
 📌 Módulo: store

@@ -11,11 +11,15 @@ export function ProductsList() {
   const [products, setProducts] = useState<ProductUIModel[]>([]);
   const { isLoading, startLoading, stopLoading } = useLoading();
 
+  const controller = new AbortController().signal;
+
   useEffect(() => {
     const fetchProducts = async () => {
       startLoading();
       try {
-        const res = await productsService.getAllProducts();
+        const res = await productsService.getAllProducts({
+          signal: controller,
+        });
         setProducts(res.data);
       } catch (error) {
       } finally {
