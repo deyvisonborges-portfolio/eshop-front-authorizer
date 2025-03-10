@@ -1,42 +1,49 @@
 "use client";
 
 import styles from "./product-list.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ProductUIModel } from "../../product.ui-model";
 import { ProductCard } from "../product-card";
 import { useLoading } from "@/providers/loading.provider";
 import { productsService } from "../../api/products.service";
+import { useQuery } from "@tanstack/react-query";
+import { Text } from "@/@lib-ui";
 
 export function ProductsList() {
-  const [products, setProducts] = useState<ProductUIModel[]>([]);
-  const { isLoading, startLoading, stopLoading } = useLoading();
+  const { startLoading, stopLoading } = useLoading();
 
-  const controller = new AbortController().signal;
+  const { data: products, isFetching } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const response = await productsService.getAllProducts();
+      return response.data;
+    },
+  });
 
+  // TODO: melhorar isso aqui
   useEffect(() => {
-    const fetchProducts = async () => {
+    if (isFetching) {
       startLoading();
-      try {
-        const res = await productsService.getAllProducts({
-          signal: controller,
-        });
-        setProducts(res.data);
-      } catch (error) {
-      } finally {
-        stopLoading();
-      }
-    };
+      return;
+    }
+    stopLoading();
+  }, [isFetching]);
 
-    fetchProducts();
-  }, []);
-
-  return isLoading ? (
+  return isFetching ? (
     <p>Carregando produtos...</p>
   ) : (
     <div className={styles.list}>
-      {products.map((product) => (
-        <ProductCard key={product.id} data={product} has={{ button: false }} />
-      ))}
+      {Array.isArray(products) && products.length > 0 ? (
+        products.map((product: ProductUIModel) => (
+          <ProductCard
+            key={product.id}
+            data={product}
+            has={{ button: false }}
+          />
+        ))
+      ) : (
+        <Text>Sem produtos</Text>
+      )}
     </div>
   );
 }

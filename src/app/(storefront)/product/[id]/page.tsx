@@ -41,7 +41,7 @@ async function ProductDetails({ params, searchParams }: PageProps) {
  * // Interessante observar
  * @link https://dev.to/peterlidee/synchronous-and-asynchronous-searchparams-in-next-15-3c7a
  */
-export default async function ProductDetailsAppPage({
+export default function ProductDetailsAppPage({
   params,
   searchParams,
 }: PageProps) {

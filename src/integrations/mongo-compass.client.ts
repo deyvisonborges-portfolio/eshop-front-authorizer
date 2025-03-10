@@ -6,7 +6,9 @@ if (!process.env.MONGODB_URI) {
   );
 }
 
-export const mongoCompassClient = new MongoClient(process.env.MONGODB_URI, {
+const uri = process.env.MONGODB_URI;
+
+const client: MongoClient = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -16,9 +18,10 @@ export const mongoCompassClient = new MongoClient(process.env.MONGODB_URI, {
 
 async function getDB(dbName: string) {
   try {
-    await mongoCompassClient.connect();
+    await client.connect();
     console.log(">>>>Connected to DB<<<<");
-    return mongoCompassClient.db(dbName);
+    // await client.db("admin").command({ ping: 1 });
+    return client.db(dbName);
   } catch (err) {
     console.log(err);
   }

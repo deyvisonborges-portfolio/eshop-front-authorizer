@@ -1,0 +1,24 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - checkout: self
+  - task: NodeTool@0
+    displayName: "Use Node 18.x"
+    inputs:
+      versionSpec: 18.x
+      checkLatest: true
+  - script: |
+      npm install
+      npm run prepare-package
+    displayName: "Installing dependencies and build"
+  - task: Npm@1
+    displayName: "Publish package"
+    inputs:
+      command: publish
+      verbose: false
+      publishRegistry: useFeed
+      publishFeed: Design System/DesignSystemNpm
