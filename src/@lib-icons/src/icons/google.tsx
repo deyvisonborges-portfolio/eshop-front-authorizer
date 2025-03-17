@@ -1,5 +1,5 @@
-import * as React from "react";
-import type { SVGProps } from "react";
+import * as React from "react"
+import type { SVGProps } from "react"
 const GoogleDrive = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -33,5 +33,5 @@ const GoogleDrive = (props: SVGProps<SVGSVGElement>) => (
       d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.45c0-1.55-.4-3.1-1.2-4.5z"
     />
   </svg>
-);
-export default GoogleDrive;
+)
+export default GoogleDrive

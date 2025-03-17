@@ -1,30 +1,30 @@
-"use client";
+"use client"
 
-import { Button, Heading, Text } from "@/@lib-ui";
-import InputOTP from "@/@lib-ui/src/core-components/input-otp";
-import { useSession } from "@/hooks/use-session";
-import { SessionProvider } from "@/providers/with-session-protection.hoc";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import { Button, Heading, Text } from "@/@lib-ui"
+import InputOTP from "@/@lib-ui/src/core-components/input-otp"
+import { useSession } from "@/hooks/use-session"
+import { SessionProvider } from "@/providers/with-session-protection.hoc"
+import { redirect } from "next/navigation"
+import { useState } from "react"
 
 export function OTPPage() {
-  const { user } = useSession();
-  const [isValidated, setIsValidated] = useState<boolean>(false);
-  const [loading, setLoading] = useState(false);
+  const { user } = useSession()
+  const [isValidated, setIsValidated] = useState<boolean>(false)
+  const [loading, setLoading] = useState(false)
 
   const handleConfirm = async () => {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsValidated(true);
-    setLoading(false);
-    redirect("/");
-  };
+    setLoading(true)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setIsValidated(true)
+    setLoading(false)
+    redirect("/")
+  }
 
   const validateOTP = async () => {
     if (isValidated) {
-      handleConfirm();
+      handleConfirm()
     }
-  };
+  }
 
   return (
     <SessionProvider>
@@ -44,5 +44,5 @@ export function OTPPage() {
         </Button>
       </div>
     </SessionProvider>
-  );
+  )
 }

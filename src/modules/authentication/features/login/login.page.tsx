@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import styles from "./login.page.module.css";
-import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox";
-import { Button, Form, Heading, Input, Text } from "@/@lib-ui";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
+import styles from "./login.page.module.css"
+import { InputCheckbox } from "@/@lib-ui/src/core-components/input-checkbox"
+import { Button, Form, Heading, Input, Text } from "@/@lib-ui"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { redirect } from "next/navigation"
 // import Github from "@/@lib-icons/src/icons/github";
 // import GoogleDrive from "@/@lib-icons/src/icons/google";
 
@@ -26,9 +26,9 @@ export const formLoginSchema = z.object({
     //   message: "Deve conter pelo menos 1 caractere especial",
     // })
     .trim(),
-});
+})
 
-type LoginSchema = z.infer<typeof formLoginSchema>;
+type LoginSchema = z.infer<typeof formLoginSchema>
 
 export function LoginPage() {
   const {
@@ -42,33 +42,33 @@ export function LoginPage() {
       password: "123456",
     },
     resolver: zodResolver(formLoginSchema),
-  });
+  })
 
   const fetchCSRF = async () => {
-    const response = await fetch("/api/auth/csrf");
-    const { data } = await response.json(); // Corrigido para `token`
-    return data;
-  };
+    const response = await fetch("/api/auth/csrf")
+    const { data } = await response.json() // Corrigido para `token`
+    return data
+  }
 
   const handleAuthenticate = async (d: LoginSchema) => {
-    const csrfToken = await fetchCSRF();
+    const csrfToken = await fetchCSRF()
 
     const csrfResponseValidation = await fetch("/api/auth/csrf-validation", {
       method: "POST",
       headers: {
         "X-CSRF-Token": csrfToken,
       },
-    });
+    })
 
-    const csrfResultValidation = await csrfResponseValidation.json();
+    const csrfResultValidation = await csrfResponseValidation.json()
     // IISSUE: tratar isso aqui, pois nao faz sentido
     if (csrfResultValidation.error) {
-      console.log("deu erro no csrf validation");
+      console.log("deu erro no csrf validation")
       // https://react-hook-form.com/docs/useform/seterror
       setError("email", {
         type: "manual",
         message: csrfResultValidation?.error?.email?.[0] || "Unknown error",
-      });
+      })
     }
 
     const response = await fetch("/api/auth/login", {
@@ -78,18 +78,18 @@ export function LoginPage() {
         "X-CSRF-Token": csrfToken,
       },
       body: JSON.stringify(d),
-    });
+    })
 
-    const result = await response.json();
+    const result = await response.json()
     if (result.error) {
       // https://react-hook-form.com/docs/useform/seterror
       setError("root", {
         type: "manual",
         message: result?.error || "Unknown error",
-      });
+      })
     }
-    setTimeout(redirect("/auth/otp"));
-  };
+    setTimeout(redirect("/auth/otp"))
+  }
 
   return (
     <div className={styles.card}>
@@ -139,5 +139,5 @@ export function LoginPage() {
 
       {isSubmitSuccessful && <p>Autenticacao concluida</p>}
     </div>
-  );
+  )
 }

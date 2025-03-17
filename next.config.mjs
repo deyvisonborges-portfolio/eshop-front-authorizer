@@ -19,6 +19,6 @@ const nextConfig = {
     // removeConsole: true,
     // reactRemoveProperties: { properties: ["^data-testid$"] },
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

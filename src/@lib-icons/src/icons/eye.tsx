@@ -1,12 +1,12 @@
-import { IconProps } from "../types";
-import { renderIconSize } from "./utils/render-icon-size";
+import { IconProps } from "../types"
+import { renderIconSize } from "./utils/render-icon-size"
 
 export function EyeIcon({ size, color = "black" }: IconProps) {
   // if (!color) {
   //   throw new Error("Color is required");
   // }
 
-  const _size = renderIconSize(size);
+  const _size = renderIconSize(size)
 
   return (
     <svg
@@ -29,5 +29,5 @@ export function EyeIcon({ size, color = "black" }: IconProps) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

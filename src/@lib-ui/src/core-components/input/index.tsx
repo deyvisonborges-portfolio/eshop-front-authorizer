@@ -1,30 +1,30 @@
-"use client";
+"use client"
 
-import styles from "./input.module.css";
+import styles from "./input.module.css"
 
-import { ComponentPropsWithRef, forwardRef, useMemo, useState } from "react";
+import { ComponentPropsWithRef, forwardRef, useMemo, useState } from "react"
 
-type InputSize = "small" | "regular";
-type InputType = "text" | "password" | "email";
+type InputSize = "small" | "regular"
+type InputType = "text" | "password" | "email"
 type InputProps = {
-  name: string;
-  zsize?: InputSize;
-  label?: string;
-  type?: InputType;
-  variant?: "default" | "underline";
-  customMessage?: string;
-  isFull?: boolean;
+  name: string
+  zsize?: InputSize
+  label?: string
+  type?: InputType
+  variant?: "default" | "underline"
+  customMessage?: string
+  isFull?: boolean
   has?: {
-    error?: boolean;
-    eyeIcon?: boolean;
-  };
-} & ComponentPropsWithRef<"input">;
+    error?: boolean
+    eyeIcon?: boolean
+  }
+} & ComponentPropsWithRef<"input">
 
 const renderPlaceholderTypeText: Record<InputType, string> = {
   text: "Digite aqui sua senha",
   password: "Informe sua senha",
   email: "Digite aqui seu e-mail",
-} as const;
+} as const
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -43,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [isInvalid, setIsInvalid] = useState(false);
+    const [isInvalid, setIsInvalid] = useState(false)
 
     const renderCustomMessage = () => {
       return (
@@ -57,8 +57,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {customMessage}
           </p>
         )
-      );
-    };
+      )
+    }
 
     return (
       <div
@@ -96,8 +96,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
         {renderCustomMessage()}
       </div>
-    );
+    )
   }
-);
+)
 
-Input.displayName = "Input";
+Input.displayName = "Input"

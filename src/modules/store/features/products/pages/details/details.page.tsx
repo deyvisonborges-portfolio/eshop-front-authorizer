@@ -1,64 +1,64 @@
-"use client";
+"use client"
 
-import styles from "./details.module.css";
-import { Button, Heading, Text } from "@/@lib-ui";
-import { ProductUIModel } from "../../product.ui-model";
-import { useEffect, useTransition } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLoading } from "@/providers/loading.provider";
-import Image from "next/image";
-import { useCart } from "../../../cart/use-cart";
-import { useSnackbar } from "notistack";
+import styles from "./details.module.css"
+import { Button, Heading, Text } from "@/@lib-ui"
+import { ProductUIModel } from "../../product.ui-model"
+import { useEffect, useTransition } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useLoading } from "@/providers/loading.provider"
+import Image from "next/image"
+import { useCart } from "../../../cart/use-cart"
+import { useSnackbar } from "notistack"
 
 type ProductDetailsPageProps = {
-  product: ProductUIModel;
-};
+  product: ProductUIModel
+}
 
 export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar()
 
-  const { handleAddItem } = useCart();
+  const { handleAddItem } = useCart()
 
-  const { startLoading, stopLoading } = useLoading();
-  const [isPending, startTransition] = useTransition();
+  const { startLoading, stopLoading } = useLoading()
+  const [isPending, startTransition] = useTransition()
 
-  const size = searchParams.get("size") || "";
-  const color = searchParams.get("color") || "";
+  const size = searchParams.get("size") || ""
+  const color = searchParams.get("color") || ""
 
   const updateQuery = (key: "size" | "color", value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
+    const params = new URLSearchParams(searchParams.toString())
+    params.set(key, value)
 
     startTransition(() =>
       router.push(`${pathname}?${params.toString()}`, { scroll: false })
-    );
-  };
+    )
+  }
 
   const handleClickAddToCart = () => {
     if (!size || !color) {
-      console.log(size, color);
+      console.log(size, color)
       enqueueSnackbar("Selecione as opções desejadas", {
         variant: "error",
-      });
-      return;
+      })
+      return
     }
-    handleAddItem({ ...product, size, color, miniThumbUrl: product.images[0] });
+    handleAddItem({ ...product, size, color, miniThumbUrl: product.images[0] })
     enqueueSnackbar("Produto adicionado ao carrinho", {
       variant: "success",
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     if (isPending) {
-      startLoading();
-      return;
+      startLoading()
+      return
     }
-    stopLoading();
-  }, [isPending]);
+    stopLoading()
+  }, [isPending])
 
   return (
     <div className={styles.container}>
@@ -134,5 +134,5 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

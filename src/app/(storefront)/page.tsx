@@ -1,5 +1,5 @@
-import { ProductsList } from "@/modules/store/features/products/components/products-list";
+import { ProductsList } from "@/modules/store/features/products/components/products-list"
 
 export default function Home() {
-  return <ProductsList />;
+  return <ProductsList />
 }

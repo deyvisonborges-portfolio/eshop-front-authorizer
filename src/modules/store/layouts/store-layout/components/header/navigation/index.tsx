@@ -1,4 +1,4 @@
-import styles from "./navigation.module.css";
+import styles from "./navigation.module.css"
 
 export function Navigation() {
   return (
@@ -17,5 +17,5 @@ export function Navigation() {
         <a>Marcas</a>
       </li>
     </ul>
-  );
+  )
 }

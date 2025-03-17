@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/@lib-tokens/dist/index.min.css";
-import { ThemeProvider } from "@/styles/theme.provider";
-import { LoadingProvider } from "@/providers/loading.provider";
-import StoreProvider from "@/config/store/store-provider";
-import { NotistackProvider } from "@/providers/notistack.provider";
-import { ReactQueryProvider } from "@/providers/react-query.provider";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "@/@lib-tokens/dist/index.min.css"
+import { ThemeProvider } from "@/styles/theme.provider"
+import { LoadingProvider } from "@/providers/loading.provider"
+import StoreProvider from "@/config/store/store-provider"
+import { NotistackProvider } from "@/providers/notistack.provider"
+import { ReactQueryProvider } from "@/providers/react-query.provider"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "eShop",
   description: "A product marketplace",
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -49,7 +49,7 @@ export default function RootLayout({
         </ReactQueryProvider>
       </body>
     </html>
-  );
+  )
 }
 
 // "use client";

@@ -1,12 +1,12 @@
-import styles from "./cart.module.css";
+import styles from "./cart.module.css"
 
 export function CartIconBlack24({ value }: { value?: number }) {
   const getValue = () => {
     if (value) {
-      if (value > 99) return "99+";
-      return value;
+      if (value > 99) return "99+"
+      return value
     }
-  };
+  }
 
   return (
     <i className={styles.container}>
@@ -41,5 +41,5 @@ export function CartIconBlack24({ value }: { value?: number }) {
         />
       </svg>
     </i>
-  );
+  )
 }

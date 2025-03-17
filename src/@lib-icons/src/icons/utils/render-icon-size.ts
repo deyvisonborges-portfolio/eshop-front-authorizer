@@ -1,17 +1,17 @@
-import { IconProps } from "../../types";
+import { IconProps } from "../../types"
 
 export const renderIconSize = (size: IconProps["size"] = "regular") => {
   switch (size) {
     case "mini":
-      return 12;
+      return 12
     case "small":
     case "medium":
-      return 16;
+      return 16
     case "regular":
-      return 20;
+      return 20
     case "large":
-      return 24;
+      return 24
     default:
-      return 20;
+      return 20
   }
-};
+}

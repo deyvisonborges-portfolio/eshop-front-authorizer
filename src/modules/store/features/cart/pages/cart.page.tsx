@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import styles from "./cart.module.css";
-import { useCart } from "../use-cart";
+import styles from "./cart.module.css"
+import { useCart } from "../use-cart"
 
 export function CartPage() {
-  const { cartItems, handleRemoveItem } = useCart();
+  const { cartItems, handleRemoveItem } = useCart()
 
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => total + item.price * item.quantity, 0)
-      .toFixed(2);
-  };
+      .toFixed(2)
+  }
 
   return (
     <div className={styles.container}>
@@ -66,8 +66,10 @@ export function CartPage() {
         <div className={styles.total}>
           <strong>Total: ${calculateTotal()}</strong>
         </div>
-        <button className={styles.checkoutButton}>Proceed to Checkout</button>
+        <button className={styles.checkoutButton} onClick={() => null}>
+          Ir para o checkout
+        </button>
       </div>
     </div>
-  );
+  )
 }

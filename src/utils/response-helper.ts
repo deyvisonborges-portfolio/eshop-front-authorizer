@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
 
 type ApiResponse<T = any> = {
-  success: boolean;
-  data?: T;
-  error?: string;
-  status: number;
-};
+  success: boolean
+  data?: T
+  error?: string
+  status: number
+}
 
 /**
  * Cria uma resposta JSON padronizada.
@@ -24,7 +24,7 @@ export function createResponse<T>(
     status,
     ...(data !== undefined ? { data } : {}),
     ...(error ? { error } : {}),
-  };
+  }
 
-  return NextResponse.json(response, { status });
+  return NextResponse.json(response, { status })
 }

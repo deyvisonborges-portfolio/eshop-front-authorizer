@@ -3,5 +3,5 @@ export default function RBACPage() {
     <div>
       <h1>RBAC Page</h1>
     </div>
-  );
+  )
 }

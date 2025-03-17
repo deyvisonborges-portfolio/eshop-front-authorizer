@@ -1,5 +1,5 @@
-import { CartPage } from "@/modules/store/features/cart/pages/cart.page";
+import { CartPage } from "@/modules/store/features/cart/pages/cart.page"
 
 export default function CartAppPage() {
-  return <CartPage />;
+  return <CartPage />
 }

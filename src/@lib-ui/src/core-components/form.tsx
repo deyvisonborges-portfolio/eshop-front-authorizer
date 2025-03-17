@@ -1,9 +1,9 @@
-import { ComponentPropsWithRef, forwardRef, PropsWithChildren } from "react";
+import { ComponentPropsWithRef, forwardRef, PropsWithChildren } from "react"
 
 type FormProps = {
-  utilities?: string[];
+  utilities?: string[]
 } & ComponentPropsWithRef<"form"> &
-  PropsWithChildren;
+  PropsWithChildren
 
 // export function mapUtilities(utilities: string[]): string[] {
 //   if (!Array.isArray(utilities)) return [];
@@ -19,8 +19,8 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       <form ref={ref} {...props} className={className}>
         {children}
       </form>
-    );
+    )
   }
-);
+)
 
-Form.displayName = "Form";
+Form.displayName = "Form"

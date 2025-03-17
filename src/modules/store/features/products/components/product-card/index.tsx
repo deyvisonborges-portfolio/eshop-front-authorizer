@@ -1,26 +1,26 @@
-import { Button } from "@/@lib-ui";
-import styles from "./product-card.module.css";
-import { ProductUIModel } from "../../product.ui-model";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import { ProductCardSkeleton } from "./skeleton";
+import { Button } from "@/@lib-ui"
+import styles from "./product-card.module.css"
+import { ProductUIModel } from "../../product.ui-model"
+import { useRouter } from "next/navigation"
+import { useCallback } from "react"
+import { ProductCardSkeleton } from "./skeleton"
 
 type ProductCardProps = {
-  data: ProductUIModel;
-  isLoaded?: boolean;
-  has?: { button?: boolean };
-};
+  data: ProductUIModel
+  isLoaded?: boolean
+  has?: { button?: boolean }
+}
 
 export function ProductCard({
   data,
   isLoaded = true,
   has = {},
 }: ProductCardProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleSelectProduct = useCallback((productId: string) => {
-    router.push(`/product/${productId}`);
-  }, []);
+    router.push(`/product/${productId}`)
+  }, [])
 
   return isLoaded ? (
     <div className={styles.card} onClick={() => handleSelectProduct(data.id)}>
@@ -53,5 +53,5 @@ export function ProductCard({
     </div>
   ) : (
     <ProductCardSkeleton />
-  );
+  )
 }

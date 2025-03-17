@@ -22,5 +22,5 @@ export function UserIconBlack24() {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }

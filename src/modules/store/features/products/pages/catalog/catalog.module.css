@@ -1,0 +1,119 @@
+@keyframes pulse {
+  0% {
+    background-color: var(--color-gray-2);
+  }
+  50% {
+    background-color: var(--color-gray-3);
+  }
+  100% {
+    background-color: var(--color-gray-2);
+  }
+}
+
+.skeletonCard {
+  max-width: 244px;
+  width: 100%;
+  border: 1px solid var(--color-gray-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.skeletonImage {
+  height: 200px;
+  width: 100%;
+  background-color: var(--color-gray-2);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonTitle {
+  height: 20px;
+  width: 80%;
+  background-color: var(--color-gray-2);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonPrice {
+  height: 16px;
+  width: 40%;
+  background-color: var(--color-gray-2);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonButton {
+  height: 40px;
+  width: 100%;
+  background-color: var(--color-gray-2);
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-gray-10);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: var(--color-gray-6);
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 480px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.noProducts {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 0;
+  color: var(--color-gray-6);
+}
+
+/* Center the product cards */
+.productsGrid > div {
+  margin: 0 auto;
+  width: 100%;
+}

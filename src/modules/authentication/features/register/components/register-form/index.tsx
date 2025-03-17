@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { Button, Form, Input } from "@/@lib-ui";
-import styles from "./register-form.module.css";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateUserType } from "@/app/api/mongo/users/types";
-import { MongoUserService } from "@/modules/authentication/service/mongo/mongo-user.service";
+import { Button, Form, Input } from "@/@lib-ui"
+import styles from "./register-form.module.css"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { CreateUserType } from "@/app/api/mongo/users/types"
+import { MongoUserService } from "@/modules/authentication/service/mongo/mongo-user.service"
 
 export const registerFormZodSchema = z
   .object({
@@ -37,11 +37,11 @@ export const registerFormZodSchema = z
         code: z.ZodIssueCode.custom,
         message: "Senhas não combinam",
         path: ["confirmPassword"],
-      });
+      })
     }
-  });
+  })
 
-export type RegisterFormSchema = z.infer<typeof registerFormZodSchema>;
+export type RegisterFormSchema = z.infer<typeof registerFormZodSchema>
 
 export function RegisterForm() {
   const {
@@ -50,16 +50,16 @@ export function RegisterForm() {
     ...form
   } = useForm<RegisterFormSchema>({
     resolver: zodResolver(registerFormZodSchema),
-  });
+  })
 
   const handleSubmitData = async (data: RegisterFormSchema) => {
-    const mongoService = new MongoUserService();
-    const user: CreateUserType = { ...data };
-    await mongoService.createUser(user);
+    const mongoService = new MongoUserService()
+    const user: CreateUserType = { ...data }
+    await mongoService.createUser(user)
     await fetch("/api/nodemailer", {
       method: "POST",
-    });
-  };
+    })
+  }
 
   return (
     <Form className={styles.form} onSubmit={handleSubmit(handleSubmitData)}>
@@ -110,5 +110,5 @@ export function RegisterForm() {
         {isSubmitting ? "Enviando" : "Cadastrar"}
       </Button>
     </Form>
-  );
+  )
 }

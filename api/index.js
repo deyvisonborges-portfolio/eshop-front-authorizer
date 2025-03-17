@@ -1,12 +1,12 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import csurf from "csurf";
+import express from "express"
+import cookieParser from "cookie-parser"
+import csurf from "csurf"
 
-const app = express();
-app.use(express.json());
-app.use(cookieParser());
+const app = express()
+app.use(express.json())
+app.use(cookieParser())
 
-const csrfProtection = csurf({ cookie: true });
+const csrfProtection = csurf({ cookie: true })
 
 /**
  * Rota para obter o token CSRF.
@@ -14,8 +14,8 @@ const csrfProtection = csurf({ cookie: true });
  * para que o token seja enviado e usado na requisição POST.
  */
 app.get("/auth/csrf", csrfProtection, (req, res) => {
-  res.json({ csrfToken: req.csrfToken() });
-});
+  res.json({ csrfToken: req.csrfToken() })
+})
 
 /**
  * Rota de login protegida por CSRF.
@@ -23,10 +23,10 @@ app.get("/auth/csrf", csrfProtection, (req, res) => {
  * com o token armazenado no cookie.
  */
 app.post("/auth/login", csrfProtection, (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body
 
   if (!email || !password) {
-    return res.status(400).json({ error: "Email e senha são obrigatórios" });
+    return res.status(400).json({ error: "Email e senha são obrigatórios" })
   }
 
   // Simula autenticação
@@ -37,23 +37,23 @@ app.post("/auth/login", csrfProtection, (req, res) => {
       sameSite: "strict", // Reduz riscos de CSRF
       maxAge: 60 * 60 * 1000, // 1 hora
       path: "/",
-    });
-    return res.json({ success: true });
+    })
+    return res.json({ success: true })
   }
 
-  return res.status(401).json({ error: "Credenciais inválidas" });
-});
+  return res.status(401).json({ error: "Credenciais inválidas" })
+})
 
 /**
  * Rota para verificar a sessão.
  * Apenas um exemplo para mostrar que o cookie de sessão já foi configurado.
  */
 app.get("/auth/session", (req, res) => {
-  const sessionToken = req.cookies.session;
+  const sessionToken = req.cookies.session
   if (!sessionToken) {
-    return res.status(401).json({ error: "Não autenticado" });
+    return res.status(401).json({ error: "Não autenticado" })
   }
-  res.json({ session: sessionToken });
-});
+  res.json({ session: sessionToken })
+})
 
-app.listen(3001, () => console.log("Servidor Express rodando na porta 3001"));
+app.listen(3001, () => console.log("Servidor Express rodando na porta 3001"))

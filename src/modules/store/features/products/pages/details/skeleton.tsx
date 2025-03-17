@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import styles from "./details.module.css";
-import { Heading, Text } from "@/@lib-ui";
+import styles from "./details.module.css"
+import { Heading, Text } from "@/@lib-ui"
 
 export function ProductDetailsSkeleton() {
   return (
@@ -81,5 +81,5 @@ export function ProductDetailsSkeleton() {
         </div>
       </div>
     </div>
-  );
+  )
 }

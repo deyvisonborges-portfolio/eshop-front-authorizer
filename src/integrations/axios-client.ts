@@ -1,4 +1,4 @@
-import axios, { CreateAxiosDefaults, AxiosInstance } from "axios";
+import axios, { CreateAxiosDefaults, AxiosInstance } from "axios"
 
 export function createAPI({
   withCredentials = true,
@@ -9,15 +9,15 @@ export function createAPI({
     withCredentials,
     timeout,
     ...props,
-  });
+  })
 
   instance.interceptors.response.use(
     (response) => response,
     (error) => {
-      console.error("API Error:", error);
-      return Promise.reject(error);
+      console.error("API Error:", error)
+      return Promise.reject(error)
     }
-  );
+  )
 
-  return instance;
+  return instance
 }

@@ -1,33 +1,28 @@
-"use client";
+"use client"
 
-import styles from "./product-list.module.css";
-import { useEffect } from "react";
-import { ProductUIModel } from "../../product.ui-model";
-import { ProductCard } from "../product-card";
-import { useLoading } from "@/providers/loading.provider";
-import { productsService } from "../../api/products.service";
-import { useQuery } from "@tanstack/react-query";
-import { Text } from "@/@lib-ui";
+import styles from "./product-list.module.css"
+import { useEffect } from "react"
+import { ProductUIModel } from "../../product.ui-model"
+import { ProductCard } from "../product-card"
+import { useLoading } from "@/providers/loading.provider"
+import { productsService } from "../../api/products.service"
+import { useQuery } from "@tanstack/react-query"
+import { Text } from "@/@lib-ui"
 
 export function ProductsList() {
-  const { startLoading, stopLoading } = useLoading();
+  const { startLoading, stopLoading } = useLoading()
 
   const { data: products, isFetching } = useQuery({
     queryKey: ["products"],
+    staleTime: 1000 * 60 * 5, // Cache válido por 5 minutos
     queryFn: async () => {
-      const response = await productsService.getAllProducts();
-      return response.data;
+      const response = await productsService.getAllProducts()
+      return response.data
     },
-  });
+  })
 
-  // TODO: melhorar isso aqui
-  useEffect(() => {
-    if (isFetching) {
-      startLoading();
-      return;
-    }
-    stopLoading();
-  }, [isFetching]);
+  if (isFetching) startLoading()
+  else stopLoading()
 
   return isFetching ? (
     <p>Carregando produtos...</p>
@@ -45,5 +40,5 @@ export function ProductsList() {
         <Text>Sem produtos</Text>
       )}
     </div>
-  );
+  )
 }

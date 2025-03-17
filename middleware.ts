@@ -51,10 +51,10 @@
 //   ],
 // };
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
 
 export function middleware(req: NextRequest) {
-  const session = req.cookies.get("session");
-  console.log("Sessão ativa:", session);
-  return NextResponse.next();
+  const session = req.cookies.get("session")
+  console.log("Sessão ativa:", session)
+  return NextResponse.next()
 }

@@ -1,6 +1,6 @@
-import { Header } from "./components/header";
-import styles from "./store-layout.module.css";
-import { PropsWithChildren } from "react";
+import { Header } from "./components/header"
+import styles from "./store-layout.module.css"
+import { PropsWithChildren } from "react"
 
 export function StoreLayout({ children }: PropsWithChildren) {
   return (
@@ -8,5 +8,5 @@ export function StoreLayout({ children }: PropsWithChildren) {
       <Header />
       <section>{children}</section>
     </main>
-  );
+  )
 }

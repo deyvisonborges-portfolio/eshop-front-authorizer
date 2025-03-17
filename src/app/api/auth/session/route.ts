@@ -1,23 +1,23 @@
-"use server";
+"use server"
 
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server"
+import { cookies } from "next/headers"
+import jwt from "jsonwebtoken"
 
-const SECRET_KEY = process.env.JWT_SECRET || "secreta-super-segura";
+const SECRET_KEY = process.env.JWT_SECRET || "secreta-super-segura"
 
 export async function GET() {
-  const token = (await cookies()).get("session")?.value;
+  const token = (await cookies()).get("session")?.value
 
   if (!token) {
-    return NextResponse.json({ authenticated: false });
+    return NextResponse.json({ authenticated: false })
   }
 
   try {
-    const decoded = jwt.verify(token, SECRET_KEY);
-    return NextResponse.json({ authenticated: true, user: decoded });
+    const decoded = jwt.verify(token, SECRET_KEY)
+    return NextResponse.json({ authenticated: true, user: decoded })
   } catch (error) {
-    return NextResponse.json({ authenticated: false });
+    return NextResponse.json({ authenticated: false })
   }
 }
 

@@ -22,5 +22,5 @@ export function SearchIconBlue16() {
         stroke-linejoin="round"
       />
     </svg>
-  );
+  )
 }

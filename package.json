@@ -2,12 +2,16 @@
   "name": "eshop-front-authorizer",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">18.8.x"
+  },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "terra": "bash run-terraform.sh"
+    "terra": "bash run-terraform.sh",
+    "socket": "node server.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.0.0",
@@ -29,6 +33,8 @@
     "react-hook-form": "^7.54.2",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -38,9 +44,11 @@
     "@types/nodemailer": "^6.4.17",
     "@types/react": "19",
     "@types/react-dom": "19",
+    "@typescript-eslint/parser": "^8.26.1",
     "eslint": "9.20.1",
     "eslint-config-next": "15.1.7",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "prettier": "3.5.3",
     "typescript": "5.7.3"
   }
 }

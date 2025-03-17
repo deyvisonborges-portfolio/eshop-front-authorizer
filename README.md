@@ -92,3 +92,23 @@ Dessa forma, products não estaria acoplado à exibição (store), permitindo ma
 <!-- Importantes -->
 
 - https://youtu.be/2RDuyw-NdDU
+
+### Techs
+
+- React Hook Forms, Zod
+- Redux, Redux Toolkit, Redux Persist
+- React Query, Next Cache
+- Axios, Fetch
+
+### Examples
+
+https://github.com/kyprogramming/shoes-store
+https://github.com/TheOrcDev/orcish-products/tree/main
+https://github.com/ski043/ShoeMarshal/tree/main
+https://github.com/peterlidee/searchparams-next-15/tree/main
+https://github.com/vercel/commerce/tree/main
+https://nextjs.org/docs/app/building-your-application/upgrading/version-15#params--searchparams
+https://github.com/AviAvinav/medusa-remix-ecommerce
+https://medusajs.com/
+https://medusajs.com/v2-overview/
+https://medusajs.com/product-module/

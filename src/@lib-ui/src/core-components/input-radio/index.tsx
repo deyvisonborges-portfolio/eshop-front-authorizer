@@ -1,26 +1,26 @@
-import styles from "./input-radio.module.css";
+import styles from "./input-radio.module.css"
 import {
   ChangeEvent,
   ComponentPropsWithRef,
   forwardRef,
   useCallback,
-} from "react";
+} from "react"
 
 type InputRadioProps = {
-  label?: string;
-  radioSize?: "small" | "regular";
-  isChecked?: boolean;
-  toggleChecked: (value: boolean) => void;
-} & ComponentPropsWithRef<"input">;
+  label?: string
+  radioSize?: "small" | "regular"
+  isChecked?: boolean
+  toggleChecked: (value: boolean) => void
+} & ComponentPropsWithRef<"input">
 
 export const InputRadio = forwardRef<HTMLInputElement, InputRadioProps>(
   ({ label, radioSize, disabled, isChecked, toggleChecked, ...props }, ref) => {
     const handleOnChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
-        toggleChecked(event.target.checked);
+        toggleChecked(event.target.checked)
       },
       [toggleChecked]
-    );
+    )
 
     return (
       <label
@@ -49,6 +49,6 @@ export const InputRadio = forwardRef<HTMLInputElement, InputRadioProps>(
           </p>
         )}
       </label>
-    );
+    )
   }
-);
+)

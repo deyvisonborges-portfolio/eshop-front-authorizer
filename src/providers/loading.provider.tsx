@@ -1,26 +1,24 @@
-"use client";
+"use client"
 
 // context/LoadingContext.tsx
-import { Spinner } from "@/@lib-ui";
-import React, { createContext, useState, useContext } from "react";
+import { Spinner } from "@/@lib-ui"
+import React, { createContext, useState, useContext } from "react"
 
 interface LoadingContextProps {
-  isLoading: boolean;
-  startLoading: () => void;
-  stopLoading: () => void;
+  isLoading: boolean
+  startLoading: () => void
+  stopLoading: () => void
 }
 
-const LoadingContext = createContext<LoadingContextProps | undefined>(
-  undefined
-);
+const LoadingContext = createContext<LoadingContextProps | undefined>(undefined)
 
 export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
-  const startLoading = () => setIsLoading(true);
-  const stopLoading = () => setIsLoading(false);
+  const startLoading = () => setIsLoading(true)
+  const stopLoading = () => setIsLoading(false)
 
   return (
     <LoadingContext.Provider value={{ isLoading, startLoading, stopLoading }}>
@@ -43,13 +41,13 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
       )}
       {children}
     </LoadingContext.Provider>
-  );
-};
+  )
+}
 
 export const useLoading = () => {
-  const context = useContext(LoadingContext);
+  const context = useContext(LoadingContext)
   if (!context) {
-    throw new Error("useLoading deve ser usado dentro de um LoadingProvider");
+    throw new Error("useLoading deve ser usado dentro de um LoadingProvider")
   }
-  return context;
-};
+  return context
+}

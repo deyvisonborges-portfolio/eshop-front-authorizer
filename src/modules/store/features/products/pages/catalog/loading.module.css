@@ -1,0 +1,58 @@
+@keyframes pulse {
+  0% {
+    background-color: var(--color-gray-2);
+  }
+  50% {
+    background-color: var(--color-gray-3);
+  }
+  100% {
+    background-color: var(--color-gray-2);
+  }
+}
+
+.skeletonCard {
+  max-width: 244px;
+  width: 100%;
+  border: 1px solid var(--color-gray-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.skeletonImage {
+  height: 200px;
+  width: 100%;
+  background-color: var(--color-gray-2);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonTitle {
+  height: 20px;
+  width: 80%;
+  background-color: var(--color-gray-2);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonPrice {
+  height: 16px;
+  width: 40%;
+  background-color: var(--color-gray-2);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonButton {
+  height: 40px;
+  width: 100%;
+  background-color: var(--color-gray-2);
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}

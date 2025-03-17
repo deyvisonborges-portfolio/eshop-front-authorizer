@@ -1,13 +1,7 @@
-import {
-  Button,
-  ButtonColor,
-  ButtonSize,
-  ButtonVariant,
-  Form,
-} from "@/@lib-ui";
-import styles from "./page.module.css";
+import { Button, ButtonColor, ButtonSize, ButtonVariant, Form } from "@/@lib-ui"
+import styles from "./page.module.css"
 
-import buttons from "./buttons.json";
+import buttons from "./buttons.json"
 
 export default function TestPage() {
   return (
@@ -38,11 +32,11 @@ export default function TestPage() {
               ))}
             </div>
           </div>
-        );
+        )
       })}
       <Button variant="pill" size="large">
         Teste
       </Button>
     </Form>
-  );
+  )
 }

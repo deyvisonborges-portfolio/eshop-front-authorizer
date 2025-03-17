@@ -1,22 +1,22 @@
-import { productsService } from "@/modules/store/features/products/api/products.service";
-import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page";
-import { ProductDetailsSkeleton } from "@/modules/store/features/products/pages/details/skeleton";
-import { Suspense } from "react";
+import { productsService } from "@/modules/store/features/products/api/products.service"
+import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page"
+import { ProductDetailsSkeleton } from "@/modules/store/features/products/pages/details/skeleton"
+import { Suspense } from "react"
 
 type PageProps = {
-  params: Promise<{ id: string }>;
-  searchParams?: Promise<{ size?: string; color?: string }>;
-};
+  params: Promise<{ id: string }>
+  searchParams?: Promise<{ size?: string; color?: string }>
+}
 
 async function ProductDetails({ params, searchParams }: PageProps) {
-  const { id } = await params;
-  const filters = searchParams ? await searchParams : {};
+  const { id } = await params
+  const filters = searchParams ? await searchParams : {}
 
   const product = await productsService.getProductByIdAndParams(id, filters, {
     cache: "default",
     next: { revalidate: 3 },
-  });
-  return <ProductDetailsPage product={product} />;
+  })
+  return <ProductDetailsPage product={product} />
 }
 
 /**
@@ -44,7 +44,8 @@ async function ProductDetails({ params, searchParams }: PageProps) {
 export default function ProductDetailsAppPage({
   params,
   searchParams,
-}: PageProps) {
+}: // TODO: to implement https://www.youtube.com/shorts/CNGIAZ2ZBpw?feature=share
+PageProps) {
   return (
     /**
      * @description
@@ -58,7 +59,7 @@ export default function ProductDetailsAppPage({
     <Suspense fallback={<ProductDetailsSkeleton />}>
       <ProductDetails params={params} searchParams={searchParams} />
     </Suspense>
-  );
+  )
 }
 
 // // generateMetadata síncrono, usando dados passados pelo layout.

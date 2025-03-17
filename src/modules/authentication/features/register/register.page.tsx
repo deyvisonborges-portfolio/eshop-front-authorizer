@@ -1,7 +1,7 @@
-import styles from "./register.module.css";
-import { RegisterForm } from "./components/register-form";
-import { Heading, Text } from "@/@lib-ui";
-import Link from "next/link";
+import styles from "./register.module.css"
+import { RegisterForm } from "./components/register-form"
+import { Heading, Text } from "@/@lib-ui"
+import Link from "next/link"
 
 export function RegisterPage() {
   return (
@@ -21,5 +21,5 @@ export function RegisterPage() {
       </div>
       <RegisterForm />
     </div>
-  );
+  )
 }

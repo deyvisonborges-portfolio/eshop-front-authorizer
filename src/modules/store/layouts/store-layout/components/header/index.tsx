@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { Heading, Input } from "@/@lib-ui";
-import styles from "./header.module.css";
-import { CartIconBlack24, UserIconBlack24 } from "@/@lib-icons/src";
-import Link from "next/link";
-import { Navigation } from "./navigation";
-import { useCart } from "@/modules/store/features/cart/use-cart";
+import { Heading, Input } from "@/@lib-ui"
+import styles from "./header.module.css"
+import { CartIconBlack24, UserIconBlack24 } from "@/@lib-icons/src"
+import Link from "next/link"
+import { Navigation } from "./navigation"
+import { useCart } from "@/modules/store/features/cart/use-cart"
 
 export function Header() {
-  const { cartItems } = useCart();
+  const { cartItems } = useCart()
 
   return (
     <header className={styles.header}>
@@ -31,5 +31,5 @@ export function Header() {
         </Link>
       </div>
     </header>
-  );
+  )
 }

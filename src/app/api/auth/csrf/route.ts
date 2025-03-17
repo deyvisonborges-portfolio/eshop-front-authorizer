@@ -1,36 +1,36 @@
-import { AUTH_CONSTANTS } from "@/modules/authentication/constants";
-import { createResponse } from "@/utils/response-helper";
-import crypto from "crypto";
-import { NextResponse } from "next/server";
+import { AUTH_CONSTANTS } from "@/modules/authentication/constants"
+import { createResponse } from "@/utils/response-helper"
+import crypto from "crypto"
+import { NextResponse } from "next/server"
 
 export async function GET() {
   if (!AUTH_CONSTANTS.secret.csrfKey) {
-    return createResponse(401, undefined, "Failed to generate CSRF token");
+    return createResponse(401, undefined, "Failed to generate CSRF token")
   }
 
-  const iat = Math.floor(Date.now() / 1000); // Timestamp atual
-  const exp = iat + 60; // Expira em 1 min
-  const expires = `${iat}.${exp}`;
+  const iat = Math.floor(Date.now() / 1000) // Timestamp atual
+  const exp = iat + 60 // Expira em 1 min
+  const expires = `${iat}.${exp}`
 
   const hash = crypto
     .createHmac("sha256", AUTH_CONSTANTS.secret.csrfKey)
     .update(expires)
-    .digest("hex");
+    .digest("hex")
 
-  const token = `${expires}.${hash}`;
+  const token = `${expires}.${hash}`
 
   // ISSUE - resolve esse problema de setar o retorno manualmente sem usar o createResponse
   const response = NextResponse.json({
     data: token,
     status: 200,
-  });
+  })
 
   response.cookies.set(AUTH_CONSTANTS.cookie.csrfToken, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: "/",
-  });
+  })
 
-  return response;
+  return response
 }

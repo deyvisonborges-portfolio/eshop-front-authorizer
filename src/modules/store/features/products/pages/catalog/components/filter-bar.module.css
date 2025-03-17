@@ -1,0 +1,79 @@
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-gray-2);
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.categoryButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--color-gray-1);
+  border: 1px solid var(--color-gray-2);
+  color: var(--color-gray-8);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.categoryButton:hover {
+  background: var(--color-gray-2);
+}
+
+.categoryButton.active {
+  background: var(--color-gray-10);
+  color: white;
+  border-color: var(--color-gray-10);
+}
+
+.sortContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.sortLabel {
+  margin-right: 8px;
+  color: var(--color-gray-6);
+  font-size: 14px;
+}
+
+.sortSelect {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--color-gray-3);
+  background-color: white;
+  color: var(--color-gray-8);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .filterBar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .categories {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    /* Hide scrollbar but allow scrolling */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,1 +1,1 @@
-export * from "./core-components";
+export * from "./core-components"

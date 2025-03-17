@@ -1,17 +1,17 @@
-import React, { ComponentPropsWithRef, forwardRef } from "react";
-import styles from "./button.module.css";
+import React, { ComponentPropsWithRef, forwardRef } from "react"
+import styles from "./button.module.css"
 
-export type ButtonSize = "mini" | "small" | "medium" | "regular" | "large";
-export type ButtonVariant = "squared" | "rounded" | "pill";
-export type ButtonColor = "primary" | "secondary" | "";
+export type ButtonSize = "mini" | "small" | "medium" | "regular" | "large"
+export type ButtonVariant = "squared" | "rounded" | "pill"
+export type ButtonColor = "primary" | "secondary" | ""
 
 type ButtonProps = {
-  color?: ButtonColor;
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-  icon?: React.ReactNode;
-  isFull?: boolean;
-} & ComponentPropsWithRef<"button">;
+  color?: ButtonColor
+  size?: ButtonSize
+  variant?: ButtonVariant
+  icon?: React.ReactNode
+  isFull?: boolean
+} & ComponentPropsWithRef<"button">
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -46,8 +46,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {icon && <span>{icon}</span>}
         {children}
       </button>
-    );
+    )
   }
-);
+)
 
-Button.displayName = "Button";
+Button.displayName = "Button"

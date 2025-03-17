@@ -1,9 +1,9 @@
-import styles from "./input-checkbox.module.css";
-import { ComponentPropsWithRef, forwardRef, memo } from "react";
+import styles from "./input-checkbox.module.css"
+import { ComponentPropsWithRef, forwardRef, memo } from "react"
 
 interface InputCheckboxProps extends ComponentPropsWithRef<"input"> {
-  label?: string;
-  checkboxSize?: "small" | "regular";
+  label?: string
+  checkboxSize?: "small" | "regular"
 }
 
 export const InputCheckbox = memo(
@@ -34,9 +34,9 @@ export const InputCheckbox = memo(
             </span>
           )}
         </label>
-      );
+      )
     }
   )
-);
+)
 
-InputCheckbox.displayName = "InputCheckbox";
+InputCheckbox.displayName = "InputCheckbox"
