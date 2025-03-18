@@ -1,12 +1,15 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useCallback, useContext, useState } from "react"
+import { useRouter, usePathname } from "next/navigation"
 import styles from "./stepper.module.css"
 
 type StepperContextType = {
   activeStep: number
   setActiveStep: (step: number) => void
   stepsCount: number
+  data: any
+  setData: (data: any) => void
 }
 
 const StepperContext = createContext<StepperContextType | undefined>(undefined)
@@ -21,21 +24,36 @@ export function useStepper() {
 
 type StepperProps = {
   children: React.ReactNode
-  initialStep?: number
+  steps: { title: string; path: string }[] // Define as rotas dos steps
 }
 
-export function Stepper({ children, initialStep = 0 }: StepperProps) {
-  const [activeStep, setActiveStep] = useState(initialStep)
-  const childrenArray = React.Children.toArray(children)
-  const stepsCount = childrenArray.length
+export function Stepper({ children, steps }: StepperProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [data, _setData] = useState<Record<string, any>>({})
+
+  const activeStep = steps.findIndex((step) => step.path === pathname)
+  const stepsCount = steps.length
+
+  const setActiveStep = (step: number) => {
+    if (step >= 0 && step < steps.length) {
+      router.push(steps[step].path)
+    }
+  }
+
+  const setData = useCallback((data: any) => {
+    _setData((prev) => ({ ...prev, ...data }))
+  }, [])
 
   return (
-    <StepperContext.Provider value={{ activeStep, setActiveStep, stepsCount }}>
+    <StepperContext.Provider
+      value={{ activeStep, setActiveStep, stepsCount, data, setData }}
+    >
       <div className={styles.stepper}>
         <div className={styles.stepperHeader}>
-          {childrenArray.map((_, index) => (
+          {steps.map((step, index) => (
             <div
-              key={index}
+              key={step.path}
               className={`${styles.stepIndicator} ${index === activeStep ? styles.active : ""} ${index < activeStep ? styles.completed : ""}`}
               onClick={() => setActiveStep(index)}
             >
@@ -66,23 +84,23 @@ export function Stepper({ children, initialStep = 0 }: StepperProps) {
             />
           </div>
         </div>
-        <div className={styles.stepContent}>{childrenArray[activeStep]}</div>
+
+        <div className={styles.stepContent}>{children}</div>
+
         <div className={styles.stepperActions}>
           <button
             className={styles.button}
-            onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
+            onClick={() => setActiveStep(activeStep - 1)}
             disabled={activeStep === 0}
           >
-            Previous
+            Anterior
           </button>
           <button
             className={styles.button}
-            onClick={() =>
-              setActiveStep(Math.min(stepsCount - 1, activeStep + 1))
-            }
+            onClick={() => setActiveStep(activeStep + 1)}
             disabled={activeStep === stepsCount - 1}
           >
-            Next
+            Próximo
           </button>
         </div>
       </div>

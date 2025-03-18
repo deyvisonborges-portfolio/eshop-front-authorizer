@@ -2,14 +2,21 @@
 
 import styles from "./cart.module.css"
 import { useCart } from "../use-cart"
+import { useRouter } from "next/navigation"
 
 export function CartPage() {
+  const router = useRouter()
+
   const { cartItems, handleRemoveItem } = useCart()
 
   const calculateTotal = () => {
     return cartItems
       .reduce((total, item) => total + item.price * item.quantity, 0)
       .toFixed(2)
+  }
+
+  const handleProceedToCheckout = () => {
+    router.push(`/checkout`)
   }
 
   return (
@@ -66,7 +73,10 @@ export function CartPage() {
         <div className={styles.total}>
           <strong>Total: ${calculateTotal()}</strong>
         </div>
-        <button className={styles.checkoutButton} onClick={() => null}>
+        <button
+          className={styles.checkoutButton}
+          onClick={handleProceedToCheckout}
+        >
           Ir para o checkout
         </button>
       </div>
