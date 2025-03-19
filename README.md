@@ -93,6 +93,14 @@ Dessa forma, products não estaria acoplado à exibição (store), permitindo ma
 
 - https://youtu.be/2RDuyw-NdDU
 
+### Next.js Features
+
+- API Routes
+  - Multiple HTTP methods in one file
+  - WebApis
+    - Query Params
+    - Headers and cookies
+
 ### Techs
 
 - React Hook Forms, Zod
@@ -112,3 +120,28 @@ https://github.com/AviAvinav/medusa-remix-ecommerce
 https://medusajs.com/
 https://medusajs.com/v2-overview/
 https://medusajs.com/product-module/
+
+#### Arquitetura e Modularizacao
+
+https://developer.android.com/topic/modularization/patterns?hl=pt-br
+https://developer.android.com/training/dependency-injection/dagger-multi-module?hl=pt-br
+https://dashdevs.com/blog/modular-architecture-in-mobile-development/
+
+Tipos de dados
+Escalabilidade
+Performance
+
+Payments
+Orders
+
+- Consistencia
+- Postgres
+- Se o volume for alto (pensar em outras estrategias)
+
+Cart (redis)
+
+- performance em leitura e escritas rapidas
+
+Catalogo de produtos (elasticsearch)
+
+- buscas rapidas e eficientes

@@ -8,8 +8,7 @@ export default function CheckoutLayout({
   return (
     <Stepper
       steps={[
-        { title: "Entrega", path: "/checkout" },
-        { title: "Endereço", path: "/checkout/address" },
+        { title: "Entrega", path: "/checkout/shipping-address" },
         { title: "Pagamento", path: "/checkout/payment" },
       ]}
     >

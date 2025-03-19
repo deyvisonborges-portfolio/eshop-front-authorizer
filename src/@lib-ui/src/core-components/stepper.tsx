@@ -6,10 +6,12 @@ import styles from "./stepper.module.css"
 
 type StepperContextType = {
   activeStep: number
+  currentPath: string
   setActiveStep: (step: number) => void
   stepsCount: number
   data: any
   setData: (data: any) => void
+  goToNextStep: () => void
 }
 
 const StepperContext = createContext<StepperContextType | undefined>(undefined)
@@ -33,6 +35,7 @@ export function Stepper({ children, steps }: StepperProps) {
   const [data, _setData] = useState<Record<string, any>>({})
 
   const activeStep = steps.findIndex((step) => step.path === pathname)
+  const currentPath = steps[activeStep]?.path
   const stepsCount = steps.length
 
   const setActiveStep = (step: number) => {
@@ -45,9 +48,23 @@ export function Stepper({ children, steps }: StepperProps) {
     _setData((prev) => ({ ...prev, ...data }))
   }, [])
 
+  const goToNextStep = () => {
+    if (activeStep < steps.length - 1) {
+      setActiveStep(activeStep + 1)
+    }
+  }
+
   return (
     <StepperContext.Provider
-      value={{ activeStep, setActiveStep, stepsCount, data, setData }}
+      value={{
+        activeStep,
+        setActiveStep,
+        stepsCount,
+        data,
+        setData,
+        goToNextStep,
+        currentPath,
+      }}
     >
       <div className={styles.stepper}>
         <div className={styles.stepperHeader}>
@@ -97,7 +114,7 @@ export function Stepper({ children, steps }: StepperProps) {
           </button>
           <button
             className={styles.button}
-            onClick={() => setActiveStep(activeStep + 1)}
+            onClick={goToNextStep}
             disabled={activeStep === stepsCount - 1}
           >
             Próximo
