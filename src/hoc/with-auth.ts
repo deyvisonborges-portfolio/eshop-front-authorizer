@@ -3,7 +3,7 @@ import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { PropsWithChildren } from "react"
 
-export async function withLogin({ children }: PropsWithChildren) {
+export async function withAuth({ children }: PropsWithChildren) {
   const headersList = await headers()
   const callbackUrl = headersList.get("next-url")
   const { authenticated } = useSession()

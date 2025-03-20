@@ -25,6 +25,7 @@ export default function ShippingAddressAppRoute() {
 
   const updateAddress = async () => {
     try {
+      // https://react.dev/reference/react/useTransition
       startTransition(async () => {
         const fetcher = (await (
           await fetch("/api/address", { method: "PUT" })
