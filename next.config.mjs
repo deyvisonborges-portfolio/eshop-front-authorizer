@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+// const withPurgeCss = require("next-purgecss")
+
 const nextConfig = {
   reactStrictMode: false,
   eslint: {

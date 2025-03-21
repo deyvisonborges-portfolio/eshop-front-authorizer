@@ -1,5 +1,7 @@
 "use client"
 
+import styles from "./styles.module.css"
+
 import { Button, Form, Heading, Input, Spinner, Text } from "@/@lib-ui"
 import { useStepper } from "@/@lib-ui/src/core-components/stepper"
 import { isRedirectError } from "next/dist/client/components/redirect-error"
@@ -72,11 +74,12 @@ export default function ShippingAddressAppRoute() {
   return (
     <div>
       <Heading as="h3" size="medium">
-        Informações de entrega
+        Escolha a forma de entrega
       </Heading>
       <Text>Por favor, insira seu endereço de entrega</Text>
 
       <select
+        className={styles.select}
         value={selectedOption}
         onChange={(e) => setSelectedOption(e.target.value)}
       >

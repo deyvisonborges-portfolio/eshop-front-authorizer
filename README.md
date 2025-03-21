@@ -95,7 +95,7 @@ Dessa forma, products não estaria acoplado à exibição (store), permitindo ma
 
 ### Next.js Features
 
-- API Routes
+- API Routes (https://nextjs.org/blog/building-apis-with-nextjs?ref=dailydev)
   - Multiple HTTP methods in one file
   - WebApis
     - Query Params
@@ -145,3 +145,8 @@ Cart (redis)
 Catalogo de produtos (elasticsearch)
 
 - buscas rapidas e eficientes
+
+#### Best practices
+
+https://weser.io/blog/clean-react-with-typescript?ref=dailydev#passing-event-listeners
+https://torsten-muller.dev/

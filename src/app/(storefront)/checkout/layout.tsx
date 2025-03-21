@@ -10,6 +10,7 @@ export default function CheckoutLayout({
       steps={[
         { title: "Entrega", path: "/checkout/shipping-address" },
         { title: "Pagamento", path: "/checkout/payment" },
+        { title: "Review", path: "/checkout/review" },
       ]}
     >
       {children}
