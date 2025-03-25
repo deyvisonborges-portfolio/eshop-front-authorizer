@@ -2,8 +2,9 @@ import { Button } from "@/@lib-ui"
 import styles from "./product-card.module.css"
 import { ProductUIModel } from "../../product.ui-model"
 import { useRouter } from "next/navigation"
-import { useCallback } from "react"
+import { useCallback, useTransition } from "react"
 import { ProductCardSkeleton } from "./skeleton"
+import { useLoading } from "@/providers/loading.provider"
 
 type ProductCardProps = {
   data: ProductUIModel
@@ -16,11 +17,16 @@ export function ProductCard({
   isLoaded = true,
   has = {},
 }: ProductCardProps) {
+  const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
+  const { startLoading, stopLoading } = useLoading()
   const handleSelectProduct = useCallback((productId: string) => {
-    router.push(`/product/${productId}`)
+    startTransition(() => router.push(`/product/${productId}`))
   }, [])
+
+  if (isPending) startLoading()
+  else stopLoading()
 
   return isLoaded ? (
     <div className={styles.card} onClick={() => handleSelectProduct(data.id)}>

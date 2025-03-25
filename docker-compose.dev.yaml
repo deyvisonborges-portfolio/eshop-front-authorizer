@@ -9,16 +9,16 @@ services:
     volumes: # Optional: Persist data across container restarts
       - mongodb_data:/data/db
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:26.1.2
-    container_name: keycloak
-    environment:
-      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
-      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
-    ports:
-      - "8080:8080"
-    command: start-dev
-    restart: unless-stopped
+  # keycloak:
+  #   image: quay.io/keycloak/keycloak:26.1.2
+  #   container_name: keycloak
+  #   environment:
+  #     - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+  #     - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+  #   ports:
+  #     - "8080:8080"
+  #   command: start-dev
+  #   restart: unless-stopped
 
 volumes:
   mongodb_data: # Named volume for data persistence

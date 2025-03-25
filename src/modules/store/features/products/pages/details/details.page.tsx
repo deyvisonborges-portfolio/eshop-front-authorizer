@@ -6,9 +6,9 @@ import { ProductUIModel } from "../../product.ui-model"
 import { useEffect, useTransition } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useLoading } from "@/providers/loading.provider"
-import Image from "next/image"
 import { useCart } from "../../../cart/use-cart"
 import { useSnackbar } from "notistack"
+import { MongoCartService } from "@/modules/authentication/service/mongo/cart.service"
 
 type ProductDetailsPageProps = {
   product: ProductUIModel
@@ -46,9 +46,20 @@ export function ProductDetailsPage({ product }: ProductDetailsPageProps) {
       })
       return
     }
-    handleAddItem({ ...product, size, color, miniThumbUrl: product.images[0] })
-    enqueueSnackbar("Produto adicionado ao carrinho", {
-      variant: "success",
+    startTransition(async () => {
+      await new MongoCartService().createCart({
+        id: "",
+        properties: undefined,
+      })
+      handleAddItem({
+        ...product,
+        size,
+        color,
+        miniThumbUrl: product.images[0],
+      })
+      enqueueSnackbar("Produto adicionado ao carrinho", {
+        variant: "success",
+      })
     })
   }
 

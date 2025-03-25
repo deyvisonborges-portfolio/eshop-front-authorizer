@@ -28,7 +28,7 @@ async function getDB(dbName: string) {
 }
 
 export async function getCollection(collectionName: string) {
-  const db = await getDB("users")
+  const db = await getDB("ecommerce") // Alterado para o contexto correto
   if (db) return db.collection(collectionName)
 
   return null

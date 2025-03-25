@@ -1,5 +1,6 @@
 "use client"
 
+import { MapPinIcon } from "@/@lib-icons/src/icons/map-pin"
 import styles from "./styles.module.css"
 
 import { Button, Form, Heading, Input, Spinner, Text } from "@/@lib-ui"
@@ -8,6 +9,8 @@ import { isRedirectError } from "next/dist/client/components/redirect-error"
 import { useRouter } from "next/navigation"
 import { useSnackbar } from "notistack"
 import { useState, useTransition } from "react"
+import { useGeolocation } from "@/hooks/use-geolocation"
+import { error } from "console"
 
 export default function ShippingAddressAppRoute() {
   const router = useRouter()
@@ -23,7 +26,12 @@ export default function ShippingAddressAppRoute() {
   })
 
   const { goToNextStep, data, setData } = useStepper()
+  const { getLocation, error: geoLocationError } = useGeolocation()
   const { enqueueSnackbar } = useSnackbar()
+
+  if (geoLocationError) {
+    enqueueSnackbar(geoLocationError, { variant: "error" })
+  }
 
   const updateAddress = async () => {
     try {
@@ -77,6 +85,11 @@ export default function ShippingAddressAppRoute() {
         Escolha a forma de entrega
       </Heading>
       <Text>Por favor, insira seu endereço de entrega</Text>
+
+      <div className={styles["map-container"]} onClick={getLocation}>
+        <MapPinIcon />
+        <Text>Insira seu endereço para ver a disponibilidade de entrega</Text>
+      </div>
 
       <select
         className={styles.select}
