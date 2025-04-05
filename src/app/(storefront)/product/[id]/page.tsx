@@ -1,3 +1,4 @@
+import { Button } from "@/@lib-ui"
 import { productsService } from "@/modules/store/features/products/api/products.service"
 import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page"
 import { ProductDetailsSkeleton } from "@/modules/store/features/products/pages/details/skeleton"
@@ -13,10 +14,14 @@ async function ProductDetails({ params, searchParams }: PageProps) {
   const filters = searchParams ? await searchParams : {}
 
   const product = await productsService.getProductByIdAndParams(id, filters, {
-    cache: "default",
-    next: { revalidate: 3 },
+    cache: "force-cache",
+    next: { tags: ["product", `product-${id}`] },
   })
-  return <ProductDetailsPage product={product} />
+  const serverTime = new Date().toISOString()
+
+  console.log(serverTime)
+
+  return <ProductDetailsPage product={product} serverTimestamp={serverTime} />
 }
 
 /**
@@ -56,6 +61,7 @@ PageProps) {
      * - Nao faz o carregamento de uma nova página
      * - Como so tenho esse caso em especifico, nao vou me preocupar em criar o loading.tsx
      */
+
     <Suspense fallback={<ProductDetailsSkeleton />}>
       <ProductDetails params={params} searchParams={searchParams} />
     </Suspense>
