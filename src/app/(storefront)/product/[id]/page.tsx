@@ -1,4 +1,3 @@
-import { Button } from "@/@lib-ui"
 import { productsService } from "@/modules/store/features/products/api/products.service"
 import { ProductDetailsPage } from "@/modules/store/features/products/pages/details/details.page"
 import { ProductDetailsSkeleton } from "@/modules/store/features/products/pages/details/skeleton"
@@ -15,11 +14,12 @@ async function ProductDetails({ params, searchParams }: PageProps) {
 
   const product = await productsService.getProductByIdAndParams(id, filters, {
     cache: "force-cache",
-    next: { tags: ["product", `product-${id}`] },
+    next: {
+      tags: ["product", `product-${id}`],
+      revalidate: 20, // 1 hora de cache automático
+    },
   })
   const serverTime = new Date().toISOString()
-
-  console.log(serverTime)
 
   return <ProductDetailsPage product={product} serverTimestamp={serverTime} />
 }

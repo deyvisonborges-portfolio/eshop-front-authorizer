@@ -38,15 +38,15 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <ReactQueryProvider>
-          <StoreProvider>
-            <ThemeProvider>
-              <NotistackProvider>
+        <StoreProvider>
+          <ThemeProvider>
+            <NotistackProvider>
+              <ReactQueryProvider>
                 <LoadingProvider>{children}</LoadingProvider>
-              </NotistackProvider>
-            </ThemeProvider>
-          </StoreProvider>
-        </ReactQueryProvider>
+              </ReactQueryProvider>
+            </NotistackProvider>
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   )

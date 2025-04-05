@@ -87,6 +87,7 @@ export function ProductDetailsPage({
       <Button onClick={async () => await refreshProductDataByTag(product.id)}>
         Revalidar por tag
       </Button>
+      <p>{serverTimestamp}</p>
       <div className={styles.container}>
         <div className={styles.imageSection}>
           <img
