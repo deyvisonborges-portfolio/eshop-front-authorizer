@@ -8,7 +8,7 @@ export async function GET(req: Request) {
       id: "123123",
       description: "Bingo Original Style Chilli Sprinkled Potato Chips 90g",
       name: "Bingo 2 Original Style Chilli Chips",
-      price: 33,
+      price: 129,
       originalPrice: 50.0,
       discount: 34,
       images: ["https://placehold.co/600x400?font=roboto"],

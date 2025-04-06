@@ -13,9 +13,10 @@ async function ProductDetails({ params, searchParams }: PageProps) {
   const filters = searchParams ? await searchParams : {}
 
   const product = await productsService.getProductByIdAndParams(id, filters, {
+    cache: "force-cache",
     next: {
       tags: ["product", `product-${id}`],
-      // revalidate: 20, // 1 hora de cache automático
+      revalidate: 10, // 1 hora de cache automático
     },
   })
   const serverTime = new Date().toISOString()

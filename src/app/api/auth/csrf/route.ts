@@ -1,31 +1,18 @@
 import { AUTH_CONSTANTS } from "@/modules/authentication/constants"
+import { CSRFService } from "@/modules/authentication/service/mongo/csrf.service"
 import { createResponse } from "@/utils/response-helper"
-import crypto from "crypto"
-import { NextResponse } from "next/server"
+const csrfService = new CSRFService()
 
 export async function GET() {
-  if (!AUTH_CONSTANTS.secret.csrfKey) {
-    return createResponse(401, undefined, "Failed to generate CSRF token")
+  const result = await csrfService.getCSRFToken()
+
+  if (result?.errors || !result?.data?.token) {
+    return createResponse(500, null, result?.errors || "CSRF token not found")
   }
 
-  const iat = Math.floor(Date.now() / 1000) // Timestamp atual
-  const exp = iat + 60 // Expira em 1 min
-  const expires = `${iat}.${exp}`
+  const response = createResponse(200, result.data.token)
 
-  const hash = crypto
-    .createHmac("sha256", AUTH_CONSTANTS.secret.csrfKey)
-    .update(expires)
-    .digest("hex")
-
-  const token = `${expires}.${hash}`
-
-  // ISSUE - resolve esse problema de setar o retorno manualmente sem usar o createResponse
-  const response = NextResponse.json({
-    data: token,
-    status: 200,
-  })
-
-  response.cookies.set(AUTH_CONSTANTS.cookie.csrfToken, token, {
+  response.cookies.set(AUTH_CONSTANTS.cookie.csrfToken, result.data.token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",

@@ -17,7 +17,7 @@ type ApiResponse<T = any> = {
 export function createResponse<T>(
   status: number,
   data?: T,
-  error?: string
+  error?: any
 ): NextResponse {
   const response: ApiResponse<T> = {
     success: status >= 200 && status < 300,
